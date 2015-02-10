@@ -1,0 +1,277 @@
+fileFormatVersion: 2
+guid: 1a55ca460e8984d45bc612ff509d6fa2
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: bubblemain
+    100002: frontmid
+    100004: glassdome
+    100006: glassframe
+    100008: glassgroup
+    100010: L_frame
+    100012: left
+    100014: lefthinge
+    100016: LL_girder
+    100018: LR_girder
+    100020: //RootNode
+    100022: R_float
+    100024: R_float_2
+    100026: R_frame
+    100028: R_tank
+    100030: R_tank_2
+    100032: rearmid
+    100034: RF_tankframe
+    100036: RF_tankframe_2
+    100038: right
+    100040: righthinge
+    100042: RL_girder
+    100044: RR_girder
+    100046: RR_tankframe
+    100048: RR_tankframe_2
+    100050: hatch
+    100052: L_lampframe
+    100054: L_lampinside
+    100056: R_lampframe
+    100058: R_lampinside
+    100060: L_lampwindow
+    100062: L_lampwindow_2
+    400000: bubblemain
+    400002: frontmid
+    400004: glassdome
+    400006: glassframe
+    400008: glassgroup
+    400010: L_frame
+    400012: left
+    400014: lefthinge
+    400016: LL_girder
+    400018: LR_girder
+    400020: //RootNode
+    400022: R_float
+    400024: R_float_2
+    400026: R_frame
+    400028: R_tank
+    400030: R_tank_2
+    400032: rearmid
+    400034: RF_tankframe
+    400036: RF_tankframe_2
+    400038: right
+    400040: righthinge
+    400042: RL_girder
+    400044: RR_girder
+    400046: RR_tankframe
+    400048: RR_tankframe_2
+    400050: hatch
+    400052: L_lampframe
+    400054: L_lampinside
+    400056: R_lampframe
+    400058: R_lampinside
+    400060: L_lampwindow
+    400062: L_lampwindow_2
+    2300000: bubblemain
+    2300002: frontmid
+    2300004: glassdome
+    2300006: glassframe
+    2300008: L_frame
+    2300010: LL_girder
+    2300012: LR_girder
+    2300014: R_float
+    2300016: R_float_2
+    2300018: R_frame
+    2300020: R_tank
+    2300022: R_tank_2
+    2300024: rearmid
+    2300026: RF_tankframe
+    2300028: RF_tankframe_2
+    2300030: RL_girder
+    2300032: RR_girder
+    2300034: RR_tankframe
+    2300036: RR_tankframe_2
+    2300038: L_lampframe
+    2300040: L_lampinside
+    2300042: R_lampframe
+    2300044: R_lampinside
+    2300046: L_lampwindow
+    2300048: L_lampwindow_2
+    3300000: bubblemain
+    3300002: frontmid
+    3300004: glassdome
+    3300006: glassframe
+    3300008: L_frame
+    3300010: LL_girder
+    3300012: LR_girder
+    3300014: R_float
+    3300016: R_float_2
+    3300018: R_frame
+    3300020: R_tank
+    3300022: R_tank_2
+    3300024: rearmid
+    3300026: RF_tankframe
+    3300028: RF_tankframe_2
+    3300030: RL_girder
+    3300032: RR_girder
+    3300034: RR_tankframe
+    3300036: RR_tankframe_2
+    3300038: L_lampframe
+    3300040: L_lampinside
+    3300042: R_lampframe
+    3300044: R_lampinside
+    3300046: L_lampwindow
+    3300048: L_lampwindow_2
+    4300000: glassframe
+    4300002: glassdome
+    4300004: LR_girder
+    4300006: LL_girder
+    4300008: L_frame
+    4300010: RR_girder
+    4300012: RL_girder
+    4300014: R_frame
+    4300016: R_tank
+    4300018: RF_tankframe
+    4300020: RR_tankframe
+    4300022: R_float
+    4300024: R_tank_2
+    4300026: RF_tankframe_2
+    4300028: RR_tankframe_2
+    4300030: R_float_2
+    4300032: bubblemain
+    4300034: frontmid
+    4300036: rearmid
+    4300038: R_lampframe
+    4300040: R_lampinside
+    4300042: L_lampframe
+    4300044: L_lampinside
+    4300046: L_lampwindow
+    4300048: L_lampwindow_2
+    7400000: animation_submarine_v1
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: animation_submarine_v1
+      takeName: C4D Animation Take
+      firstFrame: 0
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bubblemain
+        weight: 1
+      - path: frontmid
+        weight: 1
+      - path: hatch
+        weight: 1
+      - path: hatch/glassdome
+        weight: 1
+      - path: hatch/glassframe
+        weight: 1
+      - path: hatch/lefthinge
+        weight: 1
+      - path: hatch/lefthinge/L_frame
+        weight: 1
+      - path: hatch/lefthinge/LL_girder
+        weight: 1
+      - path: hatch/lefthinge/LR_girder
+        weight: 1
+      - path: hatch/righthinge
+        weight: 1
+      - path: hatch/righthinge/R_frame
+        weight: 1
+      - path: hatch/righthinge/RL_girder
+        weight: 1
+      - path: hatch/righthinge/RR_girder
+        weight: 1
+      - path: left
+        weight: 1
+      - path: left/R_float_2
+        weight: 1
+      - path: left/R_tank_2
+        weight: 1
+      - path: left/RF_tankframe_2
+        weight: 1
+      - path: left/RR_tankframe_2
+        weight: 1
+      - path: rearmid
+        weight: 1
+      - path: right
+        weight: 1
+      - path: right/R_float
+        weight: 1
+      - path: right/R_tank
+        weight: 1
+      - path: right/RF_tankframe
+        weight: 1
+      - path: right/RR_tankframe
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
