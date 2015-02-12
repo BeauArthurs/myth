@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyController : MonoBehaviour
+public class EnemyBehavior : MonoBehaviour
 {
+    private Vector3 _pointA = new Vector3(1,1,0);
+    private Vector3 _pointB = new Vector3(10,1,0);
 
     public enum MovementState
     {
@@ -14,26 +16,25 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(PatrolState(new Vector3(1, 1, 0), new Vector3(10, 1, 0)));
+        StartCoroutine(PatrolState(_pointA, _pointB)); 
     }
 
     IEnumerator PatrolState(Vector3 _positionA, Vector3 _positionB)
     {
-        float speed = Time.deltaTime * 1;
         Debug.Log("patrol start");
         while (_state == MovementState.Patrol)
         {
             if (this.transform.position == _positionA)
             {
                 //L Position
-                this.transform.position = new Vector3(this.transform.position.x + speed, this.transform.position.y, this.transform.position.z);
+
+                transform.Translate(Vector3.left * Time.deltaTime);
             }
-            if (this.transform.position == _positionB)
+            else if (this.transform.position == _positionB)
             {
                 //R Position
-                this.transform.position = new Vector3(this.transform.position.x - speed, this.transform.position.y, this.transform.position.z);
+                transform.Translate(Vector3.right * Time.deltaTime);
             }
-
             yield return 0;
         }
     }
@@ -46,8 +47,5 @@ public class EnemyController : MonoBehaviour
             yield return 0;
         }
     }
-
-
-
 
 }
