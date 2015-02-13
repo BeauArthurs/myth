@@ -3,8 +3,11 @@ using System.Collections;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    private Vector3 _pointA = new Vector3(1,1,0);
-    private Vector3 _pointB = new Vector3(10,1,0);
+ 
+    [SerializeField]
+    private GameObject[] _points;
+    private GameObject _currentPoint;
+    private GameObject _player ;
 
     public enum MovementState
     {
@@ -16,24 +19,48 @@ public class EnemyBehavior : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(PatrolState(_pointA, _pointB)); 
+
+        _player = GameObject.FindGameObjectWithTag("player");
+        _currentPoint = _points[0];
+        StartCoroutine(PatrolState());
+        
     }
 
-    IEnumerator PatrolState(Vector3 _positionA, Vector3 _positionB)
+    /*void OnTriggerEnter(Collider other)
     {
-        Debug.Log("patrol start");
-        while (_state == MovementState.Patrol)
+        if (other.transform.tag == "player")
         {
-            if (this.transform.position == _positionA)
-            {
-                //L Position
+            StopCoroutine(PatrolState());
+            StartCoroutine(AttackState());
+        }
+    }
 
-                transform.Translate(Vector3.left * Time.deltaTime);
-            }
-            else if (this.transform.position == _positionB)
+    void OnTriggerExit(Collider other)
+    {
+        this.transform.position = new Vector3(1, 1, 0);
+        Debug.Log(this.transform.position);
+        StopCoroutine(AttackState());
+        StartCoroutine(PatrolState());
+    }*/
+
+    IEnumerator PatrolState()
+    {
+        
+        while (_state == MovementState.Patrol)
+        { 
+            transform.LookAt(_currentPoint.transform.position);
+            transform.Translate(Vector3.forward * (2 * Time.deltaTime));
+            if (Mathf.Abs (_currentPoint.transform.position.x - this.transform.position.x) < 1)
             {
-                //R Position
-                transform.Translate(Vector3.right * Time.deltaTime);
+                if (_currentPoint == _points[0])
+                {
+                    _currentPoint = _points[1];
+                    
+                }
+                else if (_currentPoint == _points[1])
+                {
+                    _currentPoint = _points[0];
+                }
             }
             yield return 0;
         }
@@ -41,9 +68,10 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator AttackState()
     {
-        Debug.Log("Attack Start");
-        while (_state == MovementState.Attack)
+        while (true)
         {
+            transform.LookAt(_player.transform.position);
+            transform.Translate(Vector3.forward * (5 * Time.deltaTime));
             yield return 0;
         }
     }
