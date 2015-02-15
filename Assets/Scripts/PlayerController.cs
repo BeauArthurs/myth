@@ -1,31 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField]
-    private int speed;
-    private int pressure;
-    private int resistance;
+    Slider _airSlider;
     [SerializeField]
-    private float air;
-    private int health;
+    Slider _pressureSlider;
+    [SerializeField]
+    private int _speed;
+    private int _pressure;
+    private int _resistance;
+    private float _air;
+    private int _health;
+
 	void Start () 
     {
-        health = 100;
-        resistance = -50;
-        air = 100;
+        _health = 100;
+        _resistance = -50;
+        _air = 100;
 	}
 	void Update ()
     {
-        pressure = Mathf.FloorToInt(transform.position.y) - resistance;
-        if(pressure < 0 )
+        _airSlider.value = _air;
+        _pressure = Mathf.FloorToInt(transform.position.y) - _resistance;
+        Debug.Log(_pressure);
+        if(_pressure < 0 && _pressure > -100 )
         {
-            Debug.Log("you are to low");
+            _pressureSlider.value = -_pressure;
         }
-        air -= 1 * Time.deltaTime;
+        _air -= 1 * Time.deltaTime;
     }
     public void Move(Vector3 direction)
     {
-        transform.position = transform.position + (direction * speed * Time.deltaTime);
+        rigidbody.AddForce(direction * _speed * Time.deltaTime);
     }
 }
