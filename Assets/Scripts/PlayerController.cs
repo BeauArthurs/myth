@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour {
     {
         _airSlider.value = _air;
         _pressure = Mathf.FloorToInt(transform.position.y) - _resistance;
-        Debug.Log(_pressure);
         if(_pressure < 0 && _pressure > -100 )
         {
             _pressureSlider.value = -_pressure;

@@ -21,10 +21,9 @@ public class controller : MonoBehaviour {
         for (int i = 0; i < Input.touchCount; i++)
         {
             Touch touch = Input.touches[i];
-            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 30));
-            RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
+            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 13));
             //if touch input is connected to joystick
-            if(i == _fingerOnStick)
+            if (i == _fingerOnStick)
             {
                 if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
                 {
@@ -36,25 +35,29 @@ public class controller : MonoBehaviour {
                     stick.localPosition = Vector3.zero;
                 }
             }
-            else if (hit != null && hit.collider != null)
-            {
-                if (hit.collider.name == "JoyStick")
+            else
+            {  
+                RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
+                if (hit != null && hit.collider != null)
                 {
-                    if (touch.phase == TouchPhase.Began)
+                    if (hit.collider.name == "JoyStick")
                     {
-                        _fingerOnStick = i;
-                    } 
-                }
-                else
-                {
-                    Debug.Log(hit.collider.name);
+                        if (touch.phase == TouchPhase.Began)
+                        {
+                            _fingerOnStick = i;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log(hit.collider.name);
+                    }
                 }
             }
         }
         //mouse input for non mobile testing
         if(Input.GetMouseButton(0))
         {
-            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 30));
+            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 13));
             RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
             if (hit != null && hit.collider != null)
             {
