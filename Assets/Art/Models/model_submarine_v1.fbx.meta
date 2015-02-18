@@ -35,6 +35,15 @@ ModelImporter:
     100058: R_lampinside
     100060: L_lampwindow
     100062: L_lampwindow_2
+    100064: L_girder
+    100066: LR_tankframe
+    100068: R_girder
+    100070: submarine_collision
+    100072: RL_girder_2
+    100074: character
+    100076: character_2
+    100078: dashboard
+    100080: submarine
     400000: bubblemain
     400002: frontmid
     400004: glassdome
@@ -67,6 +76,15 @@ ModelImporter:
     400058: R_lampinside
     400060: L_lampwindow
     400062: L_lampwindow_2
+    400064: L_girder
+    400066: LR_tankframe
+    400068: R_girder
+    400070: submarine_collision
+    400072: RL_girder_2
+    400074: character
+    400076: character_2
+    400078: dashboard
+    400080: submarine
     2300000: bubblemain
     2300002: frontmid
     2300004: glassdome
@@ -92,6 +110,13 @@ ModelImporter:
     2300044: R_lampinside
     2300046: L_lampwindow
     2300048: L_lampwindow_2
+    2300050: L_girder
+    2300052: LR_tankframe
+    2300054: R_girder
+    2300056: submarine_collision
+    2300058: RL_girder_2
+    2300060: character_2
+    2300062: dashboard
     3300000: bubblemain
     3300002: frontmid
     3300004: glassdome
@@ -117,6 +142,13 @@ ModelImporter:
     3300044: R_lampinside
     3300046: L_lampwindow
     3300048: L_lampwindow_2
+    3300050: L_girder
+    3300052: LR_tankframe
+    3300054: R_girder
+    3300056: submarine_collision
+    3300058: RL_girder_2
+    3300060: character_2
+    3300062: dashboard
     4300000: glassframe
     4300002: glassdome
     4300004: LR_girder
@@ -142,6 +174,13 @@ ModelImporter:
     4300044: L_lampinside
     4300046: L_lampwindow
     4300048: L_lampwindow_2
+    4300050: submarine_collision
+    4300052: R_girder
+    4300054: L_girder
+    4300056: LR_tankframe
+    4300058: RL_girder_2
+    4300060: character_2
+    4300062: dashboard
     7400000: animation_submarine_v1
     9500000: //RootNode
     11100000: //RootNode
