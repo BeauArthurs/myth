@@ -26,7 +26,7 @@ public class EnemyBehavior : MonoBehaviour
         
     }
 
-    /*void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "player")
         {
@@ -38,10 +38,9 @@ public class EnemyBehavior : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         this.transform.position = new Vector3(1, 1, 0);
-        Debug.Log(this.transform.position);
         StopCoroutine(AttackState());
         StartCoroutine(PatrolState());
-    }*/
+    }
 
     IEnumerator PatrolState()
     {

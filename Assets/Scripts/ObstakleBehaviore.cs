@@ -15,10 +15,10 @@ public class ObstakleBehaviore : MonoBehaviour
    
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "player")
+        Debug.Log("a");
+        if (other.tag == "player")
         {
             Destroy(this.gameObject);
-            Debug.Log("playerhealth - damage");
         }
     }
 }
