@@ -15,7 +15,7 @@ public class ControlInterface : MonoBehaviour {
         for (int i = 0; i < fingers; i++)
         {
             Touch touch = Input.touches[i];
-            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, Camera.main.transform.position.z));
+            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0 - Camera.main.transform.position.z));
             if(i == _StickOne-1)
             {
                 if(touch.phase == TouchPhase.Moved)

@@ -36,7 +36,7 @@ public class PlayerOperator : MonoBehaviour
             {
                 transform.rotation = new Quaternion(0, 0, 0, 0);
             }
-            pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;
+            pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;   
         }
         if(health <= 0)
         {
