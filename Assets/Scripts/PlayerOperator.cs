@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class PlayerOperator : MonoBehaviour 
 {
-
     private bool underWater;
     private Vector3 speed;
     private int totalHaealth;
@@ -43,7 +42,7 @@ public class PlayerOperator : MonoBehaviour
             Destroy(this);
         }
     }
-    public int getTotalHealth()
+    public int GetTotalHealth()
     {
         return totalHaealth;
     }
