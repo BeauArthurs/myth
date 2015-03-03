@@ -82,7 +82,7 @@ public class PlayerOperator : MonoBehaviour
     {
         pressureResistance += amount;
     }
-    public void addMoney(int amount)
+    public void AddMoney(int amount)
     {
         money += amount;
     }
