@@ -5,7 +5,6 @@ public class CameraFollow : MonoBehaviour {
 
     [SerializeField]
     private Transform target;
-    private Vector3 velocity = Vector3.zero;
     [SerializeField]
     private float damp;
 
