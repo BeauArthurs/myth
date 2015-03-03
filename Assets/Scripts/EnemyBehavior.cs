@@ -9,13 +9,13 @@ public class EnemyBehavior : MonoBehaviour
     private GameObject _currentPoint;
     private GameObject _player ;
 
-    public enum MovementState
+    public enum SharkBehavior
     {
         Patrol = 0,
         Attack,
     }
 
-    private MovementState _state;
+    private SharkBehavior _state;
 
     void Start()
     {
@@ -30,8 +30,11 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (other.transform.tag == "player")
         {
-            StopCoroutine(PatrolState());
+
             StartCoroutine(AttackState());
+            StopCoroutine(PatrolState());
+            Debug.Log("hoi");
+            Debug.Log(_state);
         }
     }
 
@@ -40,12 +43,13 @@ public class EnemyBehavior : MonoBehaviour
         this.transform.position = new Vector3(1, 1, 0);
         StopCoroutine(AttackState());
         StartCoroutine(PatrolState());
+        Debug.Log(_state);
     }
 
     IEnumerator PatrolState()
     {
-        
-        while (_state == MovementState.Patrol)
+
+        while (_state == SharkBehavior.Patrol)
         { 
             transform.LookAt(_currentPoint.transform.position);
             transform.Translate(Vector3.forward * (2 * Time.deltaTime));
