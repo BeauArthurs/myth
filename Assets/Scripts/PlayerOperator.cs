@@ -4,7 +4,10 @@ using UnityEngine.UI;
 
 public class PlayerOperator : MonoBehaviour 
 {
-    private bool underWater;
+    [SerializeField]
+    private GameObject sub;
+    //[SerializeField]
+    //private GameObject vlight;
     private Vector3 speed;
     private int totalHaealth;
     private int health;
@@ -23,20 +26,23 @@ public class PlayerOperator : MonoBehaviour
     }
 	private void Update ()
     {
-        power -= 1 * Time.deltaTime;
         if(speed != Vector3.zero)
         {
-            rigidbody.AddForce(1 * speed * Time.deltaTime *200 );
-            if(speed.x > .1f)
+            GetComponent<Rigidbody>().AddForce(1 * speed * Time.deltaTime *200 );
+            
+            if(speed.x > 0 && sub.transform.rotation.y < 270)
             {
-                transform.rotation = new Quaternion(0, 180,0,0);
+                Debug.Log(speed.x+"right");
+                sub.transform.Rotate(Vector3.down);
             }
-            else if(speed.x < -.1)
+            if (speed.x < 0 && sub.transform.rotation.y > 90)
             {
-                transform.rotation = new Quaternion(0, 0, 0, 0);
+                Debug.Log(speed.x +"left");
+                sub.transform.Rotate(Vector3.up);
             }
             pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;   
         }
+        power -= 1 * Time.deltaTime;
         if(health <= 0)
         {
             Destroy(this);
