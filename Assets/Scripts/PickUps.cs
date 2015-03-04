@@ -4,23 +4,31 @@ using System.Collections;
 public class PickUps : MonoBehaviour {
     private PlayerOperator _operatorController;
     public int typePickUp;
+    private GameObject _player;
 	// Use this for initialization
 	void Start () {
-        _operatorController = GameObject.FindGameObjectWithTag("player").GetComponent<PlayerOperator>();
-	}
+        _player = GameObject.FindGameObjectWithTag("player");
+        _operatorController = _player.GetComponent<PlayerOperator>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        foreach (Touch touch in Input.touches)
+        Debug.Log(_player);
+	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("not player");
+        if (other.gameObject == _player)
         {
-            if (touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled)
+            Debug.Log("player not work");
+            switch (typePickUp)
             {
-                if (typePickUp == 1)
-                {
-                    _operatorController.AddMoney(10);
-                    Debug.Log("add money 10");
-                }
+                case 1:
+                    Debug.Log("1,gold");
+                    Destroy(this.gameObject);
+                    break;
             }
         }
-	}
+    }
 }
