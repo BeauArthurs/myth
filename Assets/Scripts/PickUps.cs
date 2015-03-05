@@ -13,9 +13,8 @@ public class PickUps : MonoBehaviour {
             switch (typePickUp)
             {
                 case 1:
-                    Debug.Log("1,gold");
                     Destroy(this.gameObject);
-                    _operatorController.AddMoney(10);
+                    _operatorController.AddMoney(Random.Range(100, 150));
                     break;
             }
         }

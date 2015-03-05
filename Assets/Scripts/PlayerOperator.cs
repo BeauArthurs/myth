@@ -93,6 +93,7 @@ public class PlayerOperator : MonoBehaviour
     public void AddMoney(int amount)
     {
         money += amount;
+        Debug.Log(money);
     }
     public void SetTotalHealth(int amount)
     {
