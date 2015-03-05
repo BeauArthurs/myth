@@ -10,7 +10,14 @@ public class JoyStick : MonoBehaviour
         stick = transform.Find("Stick");
         stickBase = transform.Find("Base");
 	}
-    public Vector3 MoveStick(Vector3 pos)
+    public float GetAngel(Vector3 pos)
+    {
+        stick.position = pos;
+        Vector3 dif = stickBase.position- pos;
+        float angel = Mathf.Atan2(dif.y,dif.x) *(180/Mathf.PI);
+        return angel;
+    }
+    public Vector3 GetDirection(Vector3 pos)
     {
         stick.position = pos;
         Vector3 joystick = pos - stickBase.position;

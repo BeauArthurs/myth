@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class PlayerOperator : MonoBehaviour 
 {
     [SerializeField]
-    private GameObject sub;
-    //[SerializeField]
-    //private GameObject vlight;
+    private Transform sub;
+    [SerializeField]
+    private Transform flashLight;
     private Vector3 speed;
     private int totalHaealth;
     private int health;
@@ -16,6 +16,7 @@ public class PlayerOperator : MonoBehaviour
     private int pressure;
     private int pressureResistance;
     private int money;
+    private float degree;
     private void Start()
     {
         health = 100;
@@ -30,17 +31,18 @@ public class PlayerOperator : MonoBehaviour
         {
             GetComponent<Rigidbody>().AddForce(1 * speed * Time.deltaTime *200 );
             
-            if(speed.x > 0 && sub.transform.rotation.y < 270)
+            pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;
+            
+            if(speed.x < 0)
             {
-                Debug.Log(speed.x+"right");
-                sub.transform.Rotate(Vector3.down);
+                degree = 0;
             }
-            if (speed.x < 0 && sub.transform.rotation.y > 90)
+            else if(speed.x > 0)
             {
-                Debug.Log(speed.x +"left");
-                sub.transform.Rotate(Vector3.up);
+                degree = 180;
             }
-            pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;   
+            float angle = Mathf.LerpAngle(transform.rotation.y, degree, Time.deltaTime);
+            transform.localRotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, degree, 0), 1f*Time.deltaTime);
         }
         power -= 1 * Time.deltaTime;
         if(health <= 0)
@@ -104,8 +106,8 @@ public class PlayerOperator : MonoBehaviour
     {
         speed = input;
     }
-    public void SetLightDir(Vector3 dir)
+    public void SetLightDir(float angel)
     {
-
+        flashLight.eulerAngles = new Vector3(0, 0, angel);
     }
 }

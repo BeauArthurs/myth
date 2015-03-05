@@ -20,7 +20,7 @@ public class ControlInterface : MonoBehaviour {
             {
                 if(touch.phase == TouchPhase.Moved)
                 {
-                    player.SetSpeed(sticks[0].GetComponent<JoyStick>().MoveStick(position));
+                    player.SetSpeed(sticks[0].GetComponent<JoyStick>().GetDirection(position));
                 }
                 if(touch.phase == TouchPhase.Ended)
                 {
@@ -33,7 +33,7 @@ public class ControlInterface : MonoBehaviour {
             {
                 if (touch.phase == TouchPhase.Moved)
                 {
-                    sticks[1].GetComponent<JoyStick>().MoveStick(position);
+                    sticks[1].GetComponent<JoyStick>().GetDirection(position);
                 }
                 if (touch.phase == TouchPhase.Ended)
                 {
@@ -54,6 +54,22 @@ public class ControlInterface : MonoBehaviour {
                     {
                         _StickTwo = i+1;
                     }
+                }
+            }
+        }
+        if(Input.GetMouseButton(0))
+        {
+            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0 - Camera.main.transform.position.z));
+            RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
+            if (hit.collider != null)
+            {
+                if (hit.collider.name == "MovementStick")
+                {
+                    player.SetSpeed(sticks[0].GetComponent<JoyStick>().GetDirection(position));
+                }
+                else if (hit.collider.name == "LightStick")
+                {
+                    player.SetLightDir(sticks[1].GetComponent<JoyStick>().GetAngel(position));
                 }
             }
         }
