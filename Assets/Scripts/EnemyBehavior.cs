@@ -74,7 +74,7 @@ public class EnemyBehavior : MonoBehaviour
         while (true)
         {
             transform.LookAt(_player.transform.position);
-            transform.Translate(Vector3.forward * (5 * Time.deltaTime));
+            transform.Translate(Vector3.forward  * Time.deltaTime);
             yield return 0;
         }
     }
