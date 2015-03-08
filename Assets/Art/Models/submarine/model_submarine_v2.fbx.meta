@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 4153536a3a2e54921b922617490df303
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 18
   fileIDToRecycleName:
     100000: bubblemain
     100002: character
@@ -173,11 +173,13 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -200,3 +202,5 @@ ModelImporter:
   animationType: 0
   additionalBone: 0
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

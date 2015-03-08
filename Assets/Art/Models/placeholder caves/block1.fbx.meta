@@ -1,16 +1,23 @@
 fileFormatVersion: 2
-guid: 530b205b5585d4a749a344d718476fcf
+guid: ff2440080383d4bf48302085d4cd137d
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 18
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: 1
+    100002: 1flat
+    100004: //RootNode
+    400000: 1
+    400002: 1flat
+    400004: //RootNode
+    2300000: 1
+    2300002: 1flat
+    3300000: 1
+    3300002: 1flat
     4300000: 1
+    4300002: 1flat
     9500000: //RootNode
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -36,17 +43,19 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
@@ -63,3 +72,5 @@ ModelImporter:
   animationType: 0
   additionalBone: 0
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 
