@@ -8,9 +8,11 @@ public class PlayerOperator : MonoBehaviour
     private Transform sub;
     [SerializeField]
     private Transform flashLight;
+    [SerializeField]
+    private UiScript ui;
     private float speed = 400;
     private Vector3 direction;
-    private int totalHaealth;
+    private int totalHealth;
     private int health;
     private int totalAir;
     private float air;
@@ -58,6 +60,7 @@ public class PlayerOperator : MonoBehaviour
         {
             Destroy(this);
         }
+        ui.setAir(air);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -79,7 +82,7 @@ public class PlayerOperator : MonoBehaviour
     }
     public int GetTotalHealth()
     {
-        return totalHaealth;
+        return totalHealth;
     }
     public int GetHealth()
     {
@@ -108,10 +111,12 @@ public class PlayerOperator : MonoBehaviour
     public void AddHealth(int amount)
     {
         health += amount;
+        ui.setHealth(health);
     }
     public void AddAir(int amount)
     {
         air += amount;
+        ui.setAir(air);
     }
     public void AddPressureResistance(int amount)
     {
@@ -120,11 +125,11 @@ public class PlayerOperator : MonoBehaviour
     public void AddMoney(int amount)
     {
         money += amount;
-        Debug.Log(money);
+        ui.setMoney(money);
     }
     public void SetTotalHealth(int amount)
     {
-        totalHaealth = amount;
+        totalHealth = amount;
     }
     public void SetTotalAir(int amount)
     {

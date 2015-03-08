@@ -4,20 +4,27 @@ using UnityEngine.UI;
 public class UiScript : MonoBehaviour {
 
     [SerializeField]
-    private Slider helth;
+    private Slider health;
     [SerializeField]
     private Slider pressure;
     [SerializeField]
-    private Slider power;
+    private Slider air;
     [SerializeField]
-    private PlayerOperator player;
-    [SerializeField]
-    private Text money;
-	void Update () 
+    private Text money;      
+    public void setHealth(int amount)
     {
-        helth.value = player.GetHealth();
-        pressure.value = player.GetPressure();
-        power.value = player.GetAir();
-        money.text = "money : " + player.GetMoney();
-	}
+        health.value = amount;
+    }
+    public void setPressure(int amount)
+    {
+        pressure.value = amount;
+    }
+    public void setAir(float amount)
+    {
+        air.value = amount;
+    }
+    public void setMoney(int amount)
+    {
+        money.text = "money : " + amount;
+    }
 }
