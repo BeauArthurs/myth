@@ -64,14 +64,14 @@ public class PlayerOperator : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Air")
+        if(other.tag == (Tags.AIR))
         {
             UnderWater = false;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Air")
+        if (other.tag == (Tags.AIR))
         {
             UnderWater = true;
         }

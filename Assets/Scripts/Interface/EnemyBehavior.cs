@@ -20,7 +20,7 @@ public class EnemyBehavior : MonoBehaviour
     void Start()
     {
 
-        _player = GameObject.FindGameObjectWithTag("player");
+        _player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
         _currentPoint = _points[0];
         StartCoroutine(PatrolState());
         
@@ -28,7 +28,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "player")
+        if (other.transform.tag == (Tags.PLAYER))
         {
 
             StartCoroutine(AttackState());
@@ -47,7 +47,7 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator PatrolState()
     {
-
+        _state = SharkBehavior.Patrol;
         while (_state == SharkBehavior.Patrol)
         { 
             transform.LookAt(_currentPoint.transform.position);
@@ -70,6 +70,8 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator AttackState()
     {
+        Debug.Log("attack");
+        _state = SharkBehavior.Attack;
         while (true)
         {
             transform.LookAt(_player.transform.position);
