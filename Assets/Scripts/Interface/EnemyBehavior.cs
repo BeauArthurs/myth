@@ -34,7 +34,6 @@ public class EnemyBehavior : MonoBehaviour
             StartCoroutine(AttackState());
             StopCoroutine(PatrolState());
             Debug.Log("hoi");
-            Debug.Log(_state);
         }
     }
 

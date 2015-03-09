@@ -37,8 +37,8 @@ public class ControlInterface : MonoBehaviour {
                 }
                 if (touch.phase == TouchPhase.Ended)
                 {
-                    player.SetLightDir(false, sticks[1].GetComponent<JoyStick>().GetAngel(Vector3.zero));
-                    _StickTwo = 0;
+                    player.SetLightDir(false, 0);
+                    sticks[1].GetComponent<JoyStick>().LetGo();
                 }
             }
             else
@@ -61,6 +61,7 @@ public class ControlInterface : MonoBehaviour {
                 }
             }
         }
+        //for testing on pc
         if(Input.GetMouseButton(0))
         {
             Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0 - Camera.main.transform.position.z));
@@ -79,6 +80,21 @@ public class ControlInterface : MonoBehaviour {
                 {
                     player.boost();
                 }
+            }
+        }
+        if(Input.GetMouseButtonUp(0))
+        {
+            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0 - Camera.main.transform.position.z));
+            RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
+            if (hit.collider.name == "MovementStick")
+            {
+                sticks[0].GetComponent<JoyStick>().LetGo();
+                player.SetDirection(Vector3.zero);
+            }
+            else if (hit.collider.name == "LightStick")
+            {
+                player.SetLightDir(false, 0);
+                sticks[1].GetComponent<JoyStick>().LetGo();
             }
         }
 	}
