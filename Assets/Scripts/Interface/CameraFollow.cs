@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour {
     private Transform target;
     [SerializeField]
     private float damp;
-    private int _zPosCamera = -13;
+    private int _zPosCamera = -8;
 
     // Update is called once per frame
     void Update()
