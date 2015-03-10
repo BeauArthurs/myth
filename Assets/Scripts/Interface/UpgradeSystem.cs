@@ -7,7 +7,7 @@ public class UpgradeSystem : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-    _operatorController = GameObject.FindGameObjectWithTag("player").GetComponent<PlayerOperator>();
+    _operatorController = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerOperator>();
 	}
 	
 	// Update is called once per frame
@@ -15,7 +15,7 @@ public class UpgradeSystem : MonoBehaviour {
     {
         foreach (Touch touch in Input.touches)
         {
-            if (touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled && GameObject.FindGameObjectWithTag("button") == true)
+            if (touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled && GameObject.FindGameObjectWithTag(Tags.BUTTON) == true)
             {
                 if (buttons == 1)
                 {

@@ -7,7 +7,7 @@ public class PickUps : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == ("player"))
+        if (other.gameObject.tag == (Tags.PLAYER))
         {
             _operatorController = other.GetComponent<PlayerOperator>();
             switch (typePickUp)

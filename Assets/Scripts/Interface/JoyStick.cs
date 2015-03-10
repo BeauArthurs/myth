@@ -7,8 +7,8 @@ public class JoyStick : MonoBehaviour
     private Transform stickBase;
 	void Start () 
     {
-        stick = transform.Find("Stick");
-        stickBase = transform.Find("Base");
+        stick = transform.Find((Tags.STICK));
+        stickBase = transform.Find((Tags.BASE));
 	}
     public float GetAngel(Vector3 pos)
     {
