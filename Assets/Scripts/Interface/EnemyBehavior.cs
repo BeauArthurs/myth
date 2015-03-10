@@ -30,19 +30,28 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (other.transform.tag == (Tags.PLAYER))
         {
-
             StartCoroutine(AttackState());
             StopCoroutine(PatrolState());
-            Debug.Log("hoi");
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        this.transform.position = new Vector3(1, 1, 0);
-        StopCoroutine(AttackState());
-        StartCoroutine(PatrolState());
-        Debug.Log(_state);
+        if (other.gameObject.tag == (Tags.PLAYER))
+        {
+            StopCoroutine(AttackState());
+            StartCoroutine(PatrolState());
+            Debug.Log(_state);
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == (Tags.PLAYER))
+        {
+            other.gameObject.GetComponent<PlayerOperator>().AddHealth(-10);
+            
+        }
     }
 
     IEnumerator PatrolState()
@@ -75,7 +84,7 @@ public class EnemyBehavior : MonoBehaviour
         while (true)
         {
             transform.LookAt(_player.transform.position);
-            transform.Translate(Vector3.forward  * Time.deltaTime);
+            GetComponent<Rigidbody>().AddForce(Vector3.forward  * 1 *  Time.deltaTime);
             yield return 0;
         }
     }
