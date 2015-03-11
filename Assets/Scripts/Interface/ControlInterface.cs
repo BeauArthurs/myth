@@ -39,6 +39,7 @@ public class ControlInterface : MonoBehaviour {
                 {
                     player.SetLightDir(false, 0);
                     sticks[1].GetComponent<JoyStick>().LetGo();
+                    _StickTwo = 0;
                 }
             }
             else
@@ -72,7 +73,7 @@ public class ControlInterface : MonoBehaviour {
                 {
                     player.SetDirection(sticks[0].GetComponent<JoyStick>().GetDirection(position).normalized);
                 }
-                else if (hit.collider.name == (Tags.MOVEMENTSTICK))
+                else if (hit.collider.name == (Tags.LIGHTSTICK))
                 {
                     player.SetLightDir(true ,sticks[1].GetComponent<JoyStick>().GetAngel(position));
                 }

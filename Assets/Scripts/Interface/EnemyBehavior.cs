@@ -37,6 +37,11 @@ public class EnemyBehavior : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+<<<<<<< HEAD
+        this.transform.position = new Vector3(1, 1, 0);
+        StopCoroutine(AttackState());
+        StartCoroutine(PatrolState());
+=======
         if (other.gameObject.tag == (Tags.PLAYER))
         {
             StopCoroutine(AttackState());
@@ -52,6 +57,7 @@ public class EnemyBehavior : MonoBehaviour
             other.gameObject.GetComponent<PlayerOperator>().AddHealth(-10);
             
         }
+>>>>>>> origin/master
     }
 
     IEnumerator PatrolState()
@@ -79,7 +85,6 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator AttackState()
     {
-        Debug.Log("attack");
         _state = SharkBehavior.Attack;
         while (true)
         {
