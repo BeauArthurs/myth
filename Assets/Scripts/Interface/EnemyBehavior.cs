@@ -33,7 +33,6 @@ public class EnemyBehavior : MonoBehaviour
 
             StartCoroutine(AttackState());
             StopCoroutine(PatrolState());
-            Debug.Log("hoi");
         }
     }
 
@@ -42,7 +41,6 @@ public class EnemyBehavior : MonoBehaviour
         this.transform.position = new Vector3(1, 1, 0);
         StopCoroutine(AttackState());
         StartCoroutine(PatrolState());
-        Debug.Log(_state);
     }
 
     IEnumerator PatrolState()
@@ -70,7 +68,6 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator AttackState()
     {
-        Debug.Log("attack");
         _state = SharkBehavior.Attack;
         while (true)
         {

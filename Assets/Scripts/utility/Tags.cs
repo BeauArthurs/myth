@@ -11,4 +11,5 @@ public class Tags{
     public const string BASE = "Base";
     public const string BUTTON = "button";
     public const string AIR = "Air";
+    public const string WALL = "Wall";
 }

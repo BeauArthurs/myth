@@ -10,8 +10,12 @@ public class UiScript : MonoBehaviour {
     [SerializeField]
     private Slider air;
     [SerializeField]
-    private Text money;      
-    public void setHealth(int amount)
+    private Text money;
+    [SerializeField]
+    private PlayerOperator player;
+    [SerializeField]
+    private GameObject pan;
+    public void setHealth(float amount)
     {
         health.value = amount;
     }
@@ -26,5 +30,25 @@ public class UiScript : MonoBehaviour {
     public void setMoney(int amount)
     {
         money.text = "money : " + amount;
+    }
+    public void Shop()
+    {
+        if(pan.activeSelf == true)
+        {
+            pan.SetActive(false);
+        }
+        else
+        {
+            pan.SetActive(true);
+        }
+    }
+    public void Heal()
+    {
+        player.heal();
+    }
+    public void AddPressureRes()
+    {
+        pressure.maxValue += 100;
+        player.AddPressureResistance(100);
     }
 }
