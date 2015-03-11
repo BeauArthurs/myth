@@ -14,7 +14,7 @@ public class PickUps : MonoBehaviour {
             {
                 case 1:
                     Destroy(this.gameObject);
-                    _operatorController.AddMoney(Random.Range(100, 150));
+                    _operatorController.ChangeMoney(Random.Range(100, 150));
                     break;
             }
         }

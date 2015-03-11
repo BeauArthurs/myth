@@ -12,25 +12,27 @@ public class UiScript : MonoBehaviour {
     [SerializeField]
     private Text money;
     [SerializeField]
-    private PlayerOperator player;
-    [SerializeField]
     private GameObject pan;
-    public void setHealth(float amount)
+    [SerializeField]
+    private PlayerOperator player;
+    public void UpdateHealth(float amount)
     {
         health.value = amount;
     }
-    public void setPressure(int amount)
+    public void UpdatePressure(int amount)
     {
         pressure.value = amount;
     }
-    public void setAir(float amount)
+    public void UpdateAir(float amount)
     {
         air.value = amount;
     }
-    public void setMoney(int amount)
+    public void UpdateMoney(int amount)
     {
         money.text = "money : " + amount;
     }
+
+    //shop
     public void Shop()
     {
         if(pan.activeSelf == true)
@@ -44,11 +46,18 @@ public class UiScript : MonoBehaviour {
     }
     public void Heal()
     {
-        player.heal();
+        if (player.GetMoney() > 100)
+        {
+            player.ChangeMoney(-100);
+            player.ChangeHealth(30);
+        }
     }
-    public void AddPressureRes()
+    public void AddPressureResistance()
     {
-        pressure.maxValue += 100;
-        player.AddPressureResistance(100);
+        if (player.GetMoney() > 300)
+        {
+            player.ChangeMoney(-300);
+            player.ChangePressureResistance(100);
+        }
     }
 }

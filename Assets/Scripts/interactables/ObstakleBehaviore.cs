@@ -9,7 +9,7 @@ public class ObstakleBehaviore : MonoBehaviour
         if (other.tag == (Tags.PLAYER))
         {
             Destroy(this.gameObject);
-            _operatorController.AddHealth(-30);
+            _operatorController.ChangeHealth(-30);
 
         }
     }

@@ -35,31 +35,31 @@ public class PlayerOperator : MonoBehaviour
         {
             if (air > 0)
             {
-                AddAir(-1 * Time.deltaTime);
+                ChangeAir(-1 * Time.deltaTime);
             }
         }
         else
         {
             if (air < 100)
             {
-                AddAir(5 * Time.deltaTime);
+                ChangeAir(5 * Time.deltaTime);
             }
         }
         if(air < 0)
         {
-            AddHealth(-5 * Time.deltaTime);
+            ChangeHealth(-5 * Time.deltaTime);
         }
         if(pressure < 0 )
         {
-            AddHealth(-5 * Time.deltaTime);
+            ChangeHealth(-5 * Time.deltaTime);
         }
         if (health <= 0)
         {
             Destroy(this);
         }
         pressure = Mathf.FloorToInt(pressureResistance - -transform.position.y);
-        ui.setPressure(pressure);
-        ui.setAir(air);
+        ui.UpdatePressure(pressure);
+        ui.UpdateAir(air);
     }
 	private void FixedUpdate ()
     {
@@ -85,7 +85,7 @@ public class PlayerOperator : MonoBehaviour
     {
         if(collision.gameObject.tag == Tags.WALL)
         {
-            AddHealth(-10);
+            ChangeHealth(-10);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -102,11 +102,12 @@ public class PlayerOperator : MonoBehaviour
             UnderWater = true;
         }
     }
-    public void boost()
-    {
-        GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * 35);
-    }
     //Health
+    public void ChangeHealth(float amount)
+    {
+        health += amount;
+        ui.UpdateHealth(health);
+    }
     public void SetTotalHealth(int amount)
     {
         totalHealth = amount;
@@ -114,11 +115,6 @@ public class PlayerOperator : MonoBehaviour
     public int GetTotalHealth()
     {
         return totalHealth;
-    }
-    public void AddHealth(float amount)
-    {
-        health += amount;
-        ui.setHealth(health);
     }
     public float GetHealth()
     {
@@ -134,17 +130,16 @@ public class PlayerOperator : MonoBehaviour
     {
         return air;
     }
-    public void AddAir(float amount)
+    public void ChangeAir(float amount)
     {
         air += amount;
-        ui.setAir(air);
+        ui.UpdateAir(air);
     }
     public void SetTotalAir(int amount)
     {
         totalAir = amount;
     }
-    
-    
+    //Pressure 
     public int GetPressure()
     {
         return pressure;
@@ -153,27 +148,22 @@ public class PlayerOperator : MonoBehaviour
     {
         return pressureResistance;
     }
+    public void ChangePressureResistance(int amount)
+    {
+        pressureResistance += amount;
+        ui.UpdatePressure(pressure);
+    }
+    //money
     public int GetMoney()
     {
         return money;
     }
-    
-    
-    public void AddPressureResistance(int amount)
-    {
-        if (money > 200)
-        {
-            money -= 200;
-            pressureResistance += amount;
-        }
-    }
-    public void AddMoney(int amount)
+    public void ChangeMoney(int amount)
     {
         money += amount;
-        ui.setMoney(money);
-    }
-    
-    
+        ui.UpdateMoney(money);
+    } 
+    //
     public void SetDirection(Vector3 input)
     {
         direction = input;
@@ -182,5 +172,9 @@ public class PlayerOperator : MonoBehaviour
     {
         flashLight.gameObject.SetActive(on);
         flashLight.eulerAngles = new Vector3(0, 0, angel);
+    }
+    public void Boost()
+    {
+        GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * 35);
     }
 }
