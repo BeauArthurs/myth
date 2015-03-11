@@ -26,7 +26,7 @@ public class Highscore : MonoBehaviour {
 
 	void Update () 
     {
-        int health = _operatorController.GetHealth();
+        float health = _operatorController.GetHealth();
         
         if (health <= 0)
         {
