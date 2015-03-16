@@ -1,63 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-public class UiScript : MonoBehaviour {
+using UnityEngine.EventSystems;
+public class UiScript : MonoBehaviour 
+{
+    [SerializeField]
+    private Sprite[] health;
+    [SerializeField]
+    private Sprite[] Air;
+    [SerializeField]
+    private Image healthBar;
+    [SerializeField]
+    private Image AirTank;
+    [SerializeField]
+    private RectTransform DepthMeter;
 
-    [SerializeField]
-    private Slider health;
-    [SerializeField]
-    private Slider pressure;
-    [SerializeField]
-    private Slider air;
-    [SerializeField]
-    private Text money;
-    [SerializeField]
-    private GameObject pan;
-    [SerializeField]
-    private PlayerOperator player;
-    public void UpdateHealth(float amount)
+    public void SetHealth(int amount)
     {
-        health.value = amount;
+        healthBar.sprite = health[amount];
     }
-    public void UpdatePressure(int amount)
+    public void SetAir(int amount)
     {
-        pressure.value = amount;
+        AirTank.sprite = Air[amount];
     }
-    public void UpdateAir(float amount)
+    public void SetDepth(int amount)
     {
-        air.value = amount;
-    }
-    public void UpdateMoney(int amount)
-    {
-        money.text = "money : " + amount;
-    }
-
-    //shop
-    public void Shop()
-    {
-        if(pan.activeSelf == true)
-        {
-            pan.SetActive(false);
-        }
-        else
-        {
-            pan.SetActive(true);
-        }
-    }
-    public void Heal()
-    {
-        if (player.GetMoney() > 100)
-        {
-            player.ChangeMoney(-100);
-            player.ChangeHealth(30);
-        }
-    }
-    public void AddPressureResistance()
-    {
-        if (player.GetMoney() > 300)
-        {
-            player.ChangeMoney(-300);
-            player.ChangePressureResistance(100);
-        }
+        DepthMeter.eulerAngles = new Vector3(0, 0, amount);
     }
 }
