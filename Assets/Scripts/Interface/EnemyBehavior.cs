@@ -7,12 +7,14 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField]
     private GameObject[] _points;
     private GameObject _currentPoint;
-    private GameObject _player ;
+    private GameObject _player;
+    private Transform _target;
 
     public enum SharkBehavior
     {
         Patrol = 0,
         Attack,
+        Follow,
     }
 
     private SharkBehavior _state;
@@ -30,8 +32,9 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (other.transform.tag == (Tags.PLAYER))
         {
-            StartCoroutine(AttackState());
+            StartCoroutine(FollowState());
             StopCoroutine(PatrolState());
+            _target = other.transform; 
         }
     }
 
@@ -39,7 +42,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (other.gameObject.tag == (Tags.PLAYER))
         {
-            StopCoroutine(AttackState());
+            StopCoroutine(FollowState());
             StartCoroutine(PatrolState());
             Debug.Log(_state);
         }
@@ -82,10 +85,29 @@ public class EnemyBehavior : MonoBehaviour
         _state = SharkBehavior.Attack;
         while (true)
         {
-            transform.LookAt(_player.transform.position);
-            GetComponent<Rigidbody>().AddForce(Vector3.forward  * 1 *  Time.deltaTime);
+
             yield return 0;
         }
+    }
+
+    IEnumerator FollowState()
+    {
+        _state = SharkBehavior.Follow;
+        while (true)
+        {
+            transform.LookAt(_player.transform.position);
+            GetComponent<Rigidbody>().AddForce(Vector3.forward * 1 * Time.deltaTime);
+            float distens = Vector3.Distance (transform.position, _target.position);
+            Debug.Log(distens);
+            if(distens <= 1)
+            {
+                
+            }
+
+            yield return 0;
+        }
+
+        
     }
 
 }
