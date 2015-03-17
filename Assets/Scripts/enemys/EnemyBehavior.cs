@@ -7,31 +7,35 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField]
     private GameObject[] _points;
     private GameObject _currentPoint;
-    private GameObject _player ;
-
+    private GameObject _player;
+    private Transform _target;
+    private Vector3 _startPosition;
+    private float timeLastSubtracted;
     public enum SharkBehavior
     {
         Patrol = 0,
         Attack,
+        Follow,
     }
 
+    [SerializeField]
     private SharkBehavior _state;
 
     void Start()
     {
-
+        _startPosition = this.transform.position;
         _player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
         _currentPoint = _points[0];
         StartCoroutine(PatrolState());
-        
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == (Tags.PLAYER))
         {
-            StartCoroutine(AttackState());
+            StartCoroutine(FollowState());
             StopCoroutine(PatrolState());
+            _target = other.transform; 
         }
     }
 
@@ -39,9 +43,10 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (other.gameObject.tag == (Tags.PLAYER))
         {
-            StopCoroutine(AttackState());
+            StopCoroutine(FollowState());
             StartCoroutine(PatrolState());
             Debug.Log(_state);
+            this.transform.position = _startPosition;
         }
     }
 
@@ -49,14 +54,15 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (other.gameObject.tag == (Tags.PLAYER))
         {
-            other.gameObject.GetComponent<PlayerOperator>().ChangeHealth(-10);
-            
+           _player.gameObject.GetComponent<PlayerOperator>().ChangeHealth(-3);
         }
     }
 
     IEnumerator PatrolState()
     {
         _state = SharkBehavior.Patrol;
+        _currentPoint = _points[0];
+        StopCoroutine(FollowState());
         while (_state == SharkBehavior.Patrol)
         { 
             transform.LookAt(_currentPoint.transform.position);
@@ -79,13 +85,41 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator AttackState()
     {
+        
+        StopCoroutine(FollowState());
         _state = SharkBehavior.Attack;
-        while (true)
+        while (_state == SharkBehavior.Attack)
         {
-            transform.LookAt(_player.transform.position);
-            GetComponent<Rigidbody>().AddForce(Vector3.forward  * 1 *  Time.deltaTime);
+            //GetComponent<Rigidbody>().AddForce(Vector3.left * 500 * Time.deltaTime);
+            transform.Translate(Vector3.forward * (10 * Time.deltaTime));
+    
             yield return 0;
         }
+    }
+
+    IEnumerator FollowState()
+    {
+        _state = SharkBehavior.Follow;
+        while (_state == SharkBehavior.Follow)
+        {
+            transform.LookAt(_player.transform.position);
+            //GetComponent<Rigidbody>().AddForce(Vector3.left *100* Time.deltaTime);
+            transform.Translate(Vector3.forward * (2 * Time.deltaTime));
+            float distens = Vector3.Distance (transform.position, _target.position);
+            if (Time.time >= timeLastSubtracted + 1)
+            {
+                if (distens <= 10)
+                {
+                    StopCoroutine(FollowState());
+                    StartCoroutine(AttackState());
+                }
+                timeLastSubtracted = Time.time;
+            }
+
+            yield return 0;
+        }
+
+        
     }
 
 }
