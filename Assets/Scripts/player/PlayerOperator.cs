@@ -50,6 +50,10 @@ public class PlayerOperator : MonoBehaviour
                 timeLastSubtracted = Time.time;
             }
         }
+        if(air == 0)
+        {
+
+        }
     }
 	private void FixedUpdate ()
     {
