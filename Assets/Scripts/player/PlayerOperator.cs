@@ -22,6 +22,7 @@ public class PlayerOperator : MonoBehaviour
     private float degree;
     private bool UnderWater;
     private float timeLastSubtracted;
+    public float boostSpeed = 35;
     private void Start()
     {
         health = 9;
@@ -110,7 +111,7 @@ public class PlayerOperator : MonoBehaviour
     {
         return totalHealth;
     }
-    public float GetHealth()
+    public int GetHealth()
     {
         return health;
     }
@@ -167,6 +168,6 @@ public class PlayerOperator : MonoBehaviour
     }
     public void Boost()
     {
-        GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * 35);
+        GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * boostSpeed);
     }
 }
