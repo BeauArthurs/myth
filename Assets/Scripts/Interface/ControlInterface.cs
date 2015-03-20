@@ -67,13 +67,13 @@ public class ControlInterface : MonoBehaviour {
         //for testing on pc
         if(Input.GetMouseButton(0))
         {
-            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0 - Camera.main.transform.position.z));
+            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8));
             RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
             if (hit.collider != null)
             {
                 if (hit.collider.name == (Tags.MOVEMENTSTICK))
                 {
-                    player.SetDirection(sticks[0].GetComponent<JoyStick>().GetDirection(position).normalized);
+                    player.SetDirection(sticks[0].GetComponent<JoyStick>().GetDirection(position));
                 }
                 else if (hit.collider.name == (Tags.LIGHTSTICK))
                 {
@@ -82,12 +82,13 @@ public class ControlInterface : MonoBehaviour {
                 else if (hit.collider.name == (Tags.BOOST))
                 {
                     player.Boost();
+                    Debug.Log("boost");
                 }
             }
         }
         if(Input.GetMouseButtonUp(0))
         {
-            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0 - Camera.main.transform.position.z));
+            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8));
             RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
             if (hit.collider.name == (Tags.MOVEMENTSTICK))
             {

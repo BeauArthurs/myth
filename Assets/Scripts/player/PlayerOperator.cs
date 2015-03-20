@@ -5,8 +5,6 @@ using UnityEngine.UI;
 public class PlayerOperator : MonoBehaviour 
 {
     [SerializeField]
-    private Transform sub;
-    [SerializeField]
     private Transform flashLight;
     [SerializeField]
     private UiScript ui;
@@ -22,6 +20,8 @@ public class PlayerOperator : MonoBehaviour
     private float degree;
     private bool UnderWater;
     private float timeLastSubtracted;
+    private float boostTimer = 2;
+    private float lastTimeBoosted;
     private void Start()
     {
         health = 9;
@@ -52,7 +52,11 @@ public class PlayerOperator : MonoBehaviour
         }
         if(air == 0)
         {
-
+            if (Time.time >= timeLastSubtracted)
+            {
+                ChangeHealth(-1);
+                timeLastSubtracted = Time.time;
+            }
         }
     }
 	private void FixedUpdate ()
@@ -65,11 +69,11 @@ public class PlayerOperator : MonoBehaviour
             
             if(direction.x < 0)
             {
-                degree = 0;
+                degree = 90;
             }
             else if(direction.x > 0)
             {
-                degree = 180;
+                degree = 270;
             }
             
         }
@@ -167,6 +171,12 @@ public class PlayerOperator : MonoBehaviour
     }
     public void Boost()
     {
-        GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * 35);
+        if (Time.time >= lastTimeBoosted + boostTimer)
+        {
+            Debug.Log("boost2");
+            GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * 200);
+            lastTimeBoosted = Time.time;
+        }
+        
     }
 }
