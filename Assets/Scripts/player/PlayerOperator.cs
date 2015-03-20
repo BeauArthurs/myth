@@ -20,8 +20,12 @@ public class PlayerOperator : MonoBehaviour
     private float degree;
     private bool UnderWater;
     private float timeLastSubtracted;
+<<<<<<< HEAD
     private float boostTimer = 2;
     private float lastTimeBoosted;
+=======
+    public float boostSpeed = 35;
+>>>>>>> origin/master
     private void Start()
     {
         health = 9;
@@ -114,7 +118,7 @@ public class PlayerOperator : MonoBehaviour
     {
         return totalHealth;
     }
-    public float GetHealth()
+    public int GetHealth()
     {
         return health;
     }
@@ -171,6 +175,7 @@ public class PlayerOperator : MonoBehaviour
     }
     public void Boost()
     {
+<<<<<<< HEAD
         if (Time.time >= lastTimeBoosted + boostTimer)
         {
             Debug.Log("boost2");
@@ -178,5 +183,8 @@ public class PlayerOperator : MonoBehaviour
             lastTimeBoosted = Time.time;
         }
         
+=======
+        GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * boostSpeed);
+>>>>>>> origin/master
     }
 }
