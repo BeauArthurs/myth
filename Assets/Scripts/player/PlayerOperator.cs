@@ -5,8 +5,6 @@ using UnityEngine.UI;
 public class PlayerOperator : MonoBehaviour 
 {
     [SerializeField]
-    private Transform sub;
-    [SerializeField]
     private Transform flashLight;
     [SerializeField]
     private UiScript ui;
@@ -22,7 +20,10 @@ public class PlayerOperator : MonoBehaviour
     private float degree;
     private bool UnderWater;
     private float timeLastSubtracted;
-    public float boostSpeed = 35;
+    private float boostStarted;
+    private bool boosting;
+    public float boostSpeed = 0.00000000000000000000000000000000000000000000000000001f;
+    private float boostTimer = .1f;
     private void Start()
     {
         health = 9;
@@ -30,6 +31,7 @@ public class PlayerOperator : MonoBehaviour
         air = 9;
         pressureResistance = 0;
         pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;
+        boosting = false;
     }
     private void Update()
     {
@@ -53,24 +55,37 @@ public class PlayerOperator : MonoBehaviour
         }
         if(air == 0)
         {
-
+            if (Time.time >= timeLastSubtracted)
+            {
+                ChangeHealth(-1);
+                timeLastSubtracted = Time.time;
+            }
         }
     }
 	private void FixedUpdate ()
     {
         if(direction != Vector3.zero)
         {
-            GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime *speed );
+            GetComponent<Rigidbody>().AddForce(direction * Time.deltaTime *speed );
             
             pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;
+            if (boosting)
+            {
+                Debug.Log("fast");
+                GetComponent<Rigidbody>().AddForce(direction * Time.deltaTime * (boostSpeed *speed));
+                if(Time.time >= boostStarted + boostTimer)
+                {
+                    boosting = false;
+                }
+            }
             
             if(direction.x < 0)
             {
-                degree = 0;
+                degree = 90;
             }
             else if(direction.x > 0)
             {
-                degree = 180;
+                degree = 270;
             }
             
         }
@@ -78,10 +93,7 @@ public class PlayerOperator : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == Tags.WALL)
-        {
             ChangeHealth(-1);
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -168,6 +180,16 @@ public class PlayerOperator : MonoBehaviour
     }
     public void Boost()
     {
-        GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * boostSpeed);
+        if (boosting == false)
+        {
+            boostStarted = Time.time;
+            boosting = true;
+        }
+        /*if (Time.time >= lastTimeBoosted + boostTimer)
+        {
+            Debug.Log("boost2");
+            GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * boostSpeed);
+            lastTimeBoosted = Time.time;
+        }*/
     }
 }

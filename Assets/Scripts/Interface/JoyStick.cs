@@ -12,6 +12,7 @@ public class JoyStick : MonoBehaviour
 	}
     public float GetAngel(Vector3 pos)
     {
+        
         stick.position = pos;
         Vector3 dif = stickBase.position- pos;
         float angel = Mathf.Atan2(dif.y,dif.x) *(180/Mathf.PI);
@@ -19,7 +20,7 @@ public class JoyStick : MonoBehaviour
     }
     public Vector3 GetDirection(Vector3 pos)
     {
-        stick.position = pos;
+        Debug.Log(stick.position + " local" + stick.localPosition);
         Vector3 joystick = pos - stickBase.position;
         return new Vector3(joystick.x, joystick.y, 0);
     }

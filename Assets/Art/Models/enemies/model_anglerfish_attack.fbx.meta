@@ -1,0 +1,153 @@
+fileFormatVersion: 2
+guid: 1d746ec262a79445aa2f8d4c145d4f4f
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: achter
+    100002: //RootNode
+    100004: BEKKIE
+    100006: boven_vin
+    100008: centebakkie
+    100010: eind
+    100012: eind_2
+    100014: hoorntje
+    100016: Joint_10
+    100018: Joint_11
+    100020: Joint_12
+    100022: Joint_14
+    100024: Joint_15
+    100026: Joint_16
+    100028: Joint_17
+    100030: Joint_18
+    100032: Joint_19
+    100034: Joint_2
+    100036: Joint_20
+    100038: Joint_21
+    100040: Joint_22
+    100042: Joint_23
+    100044: Joint_24
+    100046: Joint_25
+    100048: Joint_26
+    100050: Joint_28
+    100052: Joint_2_2
+    100054: Joint_2_3
+    100056: Joint_5
+    100058: Joint_6
+    100060: Joint_7
+    100062: Joint_8
+    100064: Joint_9
+    100066: lampje
+    100068: midden
+    100070: neusje_van_de_zalm
+    100072: Root
+    100074: skelet
+    100076: Skin
+    100078: vin
+    100080: vin_l
+    100082: vin_r
+    100084: voorkop
+    400000: achter
+    400002: //RootNode
+    400004: BEKKIE
+    400006: boven_vin
+    400008: centebakkie
+    400010: eind
+    400012: eind_2
+    400014: hoorntje
+    400016: Joint_10
+    400018: Joint_11
+    400020: Joint_12
+    400022: Joint_14
+    400024: Joint_15
+    400026: Joint_16
+    400028: Joint_17
+    400030: Joint_18
+    400032: Joint_19
+    400034: Joint_2
+    400036: Joint_20
+    400038: Joint_21
+    400040: Joint_22
+    400042: Joint_23
+    400044: Joint_24
+    400046: Joint_25
+    400048: Joint_26
+    400050: Joint_28
+    400052: Joint_2_2
+    400054: Joint_2_3
+    400056: Joint_5
+    400058: Joint_6
+    400060: Joint_7
+    400062: Joint_8
+    400064: Joint_9
+    400066: lampje
+    400068: midden
+    400070: neusje_van_de_zalm
+    400072: Root
+    400074: skelet
+    400076: Skin
+    400078: vin
+    400080: vin_l
+    400082: vin_r
+    400084: voorkop
+    4300000: angler_1
+    7400000: C4D Animation Take
+    9500000: //RootNode
+    13700000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
