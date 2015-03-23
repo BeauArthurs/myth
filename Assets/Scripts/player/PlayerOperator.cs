@@ -20,12 +20,10 @@ public class PlayerOperator : MonoBehaviour
     private float degree;
     private bool UnderWater;
     private float timeLastSubtracted;
-<<<<<<< HEAD
-    private float boostTimer = 2;
-    private float lastTimeBoosted;
-=======
-    public float boostSpeed = 35;
->>>>>>> origin/master
+    private float boostStarted;
+    private bool boosting;
+    public float boostSpeed = 0.00000000000000000000000000000000000000000000000000001f;
+    private float boostTimer = .1f;
     private void Start()
     {
         health = 9;
@@ -33,6 +31,7 @@ public class PlayerOperator : MonoBehaviour
         air = 9;
         pressureResistance = 0;
         pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;
+        boosting = false;
     }
     private void Update()
     {
@@ -67,9 +66,18 @@ public class PlayerOperator : MonoBehaviour
     {
         if(direction != Vector3.zero)
         {
-            GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime *speed );
+            GetComponent<Rigidbody>().AddForce(direction * Time.deltaTime *speed );
             
             pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;
+            if (boosting)
+            {
+                Debug.Log("fast");
+                GetComponent<Rigidbody>().AddForce(direction * Time.deltaTime * (boostSpeed *speed));
+                if(Time.time >= boostStarted + boostTimer)
+                {
+                    boosting = false;
+                }
+            }
             
             if(direction.x < 0)
             {
@@ -85,10 +93,7 @@ public class PlayerOperator : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == Tags.WALL)
-        {
             ChangeHealth(-1);
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -175,16 +180,16 @@ public class PlayerOperator : MonoBehaviour
     }
     public void Boost()
     {
-<<<<<<< HEAD
-        if (Time.time >= lastTimeBoosted + boostTimer)
+        if (boosting == false)
+        {
+            boostStarted = Time.time;
+            boosting = true;
+        }
+        /*if (Time.time >= lastTimeBoosted + boostTimer)
         {
             Debug.Log("boost2");
-            GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * 200);
+            GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * boostSpeed);
             lastTimeBoosted = Time.time;
-        }
-        
-=======
-        GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * boostSpeed);
->>>>>>> origin/master
+        }*/
     }
 }
