@@ -22,7 +22,7 @@ public class PlayerOperator : MonoBehaviour
     private float timeLastSubtracted;
     private float boostStarted;
     private bool boosting;
-    public float boostSpeed = 0.00000000000000000000000000000000000000000000000000001f;
+    public float boostSpeed = 1f;
     private float boostTimer = .1f;
     private void Start()
     {
@@ -91,6 +91,7 @@ public class PlayerOperator : MonoBehaviour
         }
         transform.localRotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, degree, 0), 1f * Time.deltaTime);
     }
+    #region Collision
     private void OnCollisionEnter(Collision collision)
     {
             ChangeHealth(-1);
@@ -109,7 +110,8 @@ public class PlayerOperator : MonoBehaviour
             UnderWater = true;
         }
     }
-    //Health
+    #endregion
+    #region Health
     public void ChangeHealth(int amount)
     {
         health += amount;
@@ -127,8 +129,8 @@ public class PlayerOperator : MonoBehaviour
     {
         return health;
     }
-
-    //Air
+    #endregion
+    #region Air
     public int GetTotalAir()
     {
         return totalAir;
@@ -146,7 +148,8 @@ public class PlayerOperator : MonoBehaviour
     {
         totalAir = amount;
     }
-    //Pressure 
+    #endregion
+    #region Pressure 
     public int GetPressure()
     {
         return pressure;
@@ -159,7 +162,8 @@ public class PlayerOperator : MonoBehaviour
     {
         pressureResistance += amount;
     }
-    //money
+    #endregion
+    #region money
     public int GetMoney()
     {
         return money;
@@ -168,10 +172,11 @@ public class PlayerOperator : MonoBehaviour
     {
         money += amount;
     } 
-    //
+    #endregion
+    #region other
     public void SetDirection(Vector3 input)
     {
-        direction = input;
+        direction = -input;
     }
     public void SetLightDir(bool on,float angel)
     {
@@ -192,4 +197,5 @@ public class PlayerOperator : MonoBehaviour
             lastTimeBoosted = Time.time;
         }*/
     }
+    #endregion
 }

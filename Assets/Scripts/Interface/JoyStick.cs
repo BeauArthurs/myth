@@ -3,26 +3,17 @@ using System.Collections;
 
 public class JoyStick : MonoBehaviour 
 {
+    [SerializeField]
     private Transform stick;
+    [SerializeField]
     private Transform stickBase;
-	void Start () 
+    protected Vector3 Difference;
+    
+    public Vector3 Move(Vector3 pos)
     {
-        stick = transform.Find((Tags.STICK));
-        stickBase = transform.Find((Tags.BASE));
-	}
-    public float GetAngel(Vector3 pos)
-    {
-        
         stick.position = pos;
-        Vector3 dif = stickBase.position- pos;
-        float angel = Mathf.Atan2(dif.y,dif.x) *(180/Mathf.PI);
-        return angel;
-    }
-    public Vector3 GetDirection(Vector3 pos)
-    {
-        Debug.Log(stick.position + " local" + stick.localPosition);
-        Vector3 joystick = pos - stickBase.position;
-        return new Vector3(joystick.x, joystick.y, 0);
+        Difference = stickBase.position - stick.position;
+        return Difference;
     }
 	public void LetGo()
     {
