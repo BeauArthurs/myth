@@ -90,6 +90,8 @@ public class ControlInterface : MonoBehaviour {
         {
             Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8));
             RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
+			if (hit.collider != null)
+			{
             if (hit.collider.name == (Tags.MOVEMENTSTICK))
             {
                 sticks[0].GetComponent<JoyStick>().LetGo();
@@ -99,6 +101,7 @@ public class ControlInterface : MonoBehaviour {
             {
                 player.SetLightDir(false, 0);
                 sticks[1].GetComponent<JoyStick>().LetGo();
+            }
             }
         }
 	

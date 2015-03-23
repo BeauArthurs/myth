@@ -12,12 +12,7 @@ public class Menu : MonoBehaviour {
     void Update()
     {
 
-        foreach (Touch touch in Input.touches)
-        {
-            if (touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled)
-            {
-
-            }
-        }
     }
+    
+
 }
