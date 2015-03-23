@@ -22,7 +22,7 @@ public class ControlInterface : MonoBehaviour {
             {
                 if(touch.phase == TouchPhase.Moved)
                 {
-                    player.SetDirection(sticks[0].GetComponent<JoyStick>().GetDirection(position).normalized);
+                    player.SetDirection(sticks[0].GetComponent<JoyStick>().Move(position));
                 }
                 if(touch.phase == TouchPhase.Ended)
                 {
@@ -35,7 +35,10 @@ public class ControlInterface : MonoBehaviour {
             {
                 if (touch.phase == TouchPhase.Moved)
                 {
-                    player.SetLightDir(true, sticks[1].GetComponent<JoyStick>().GetAngel(position));
+                    Vector3 dif = sticks[1].GetComponent<JoyStick>().Move(position);
+                    float angel = Mathf.Atan2(dif.y, dif.x) * (180 / Mathf.PI);
+                    player.SetLightDir(true, angel);
+
                 }
                 if (touch.phase == TouchPhase.Ended)
                 {
@@ -73,11 +76,13 @@ public class ControlInterface : MonoBehaviour {
             {
                 if (hit.collider.name == (Tags.MOVEMENTSTICK))
                 {
-                    player.SetDirection(sticks[0].GetComponent<JoyStick>().GetDirection(position));
+                    player.SetDirection(sticks[0].GetComponent<JoyStick>().Move(position));
                 }
                 else if (hit.collider.name == (Tags.LIGHTSTICK))
                 {
-                    player.SetLightDir(true ,sticks[1].GetComponent<JoyStick>().GetAngel(position));
+                    Vector3 dif = sticks[1].GetComponent<JoyStick>().Move(position);
+                    float angel = Mathf.Atan2(dif.y,dif.x) *(180/Mathf.PI);
+                    player.SetLightDir(true ,angel);
                 }
                 else if (hit.collider.name == (Tags.BOOST))
                 {
