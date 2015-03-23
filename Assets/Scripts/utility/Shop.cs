@@ -17,7 +17,8 @@ public class Shop : MonoBehaviour
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 
         foreach (Touch touch in Input.touches)
         {
