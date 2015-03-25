@@ -29,6 +29,7 @@ public class EnemyBehavior : MonoBehaviour
         StartCoroutine(PatrolState());
     }
 
+
     void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == (Tags.PLAYER))
@@ -56,6 +57,11 @@ public class EnemyBehavior : MonoBehaviour
         {
            _player.gameObject.GetComponent<PlayerOperator>().ChangeHealth(-3);
         }
+    }
+
+    void OnCollitionExit(Collision other)
+    {
+        StartCoroutine(FollowState());
     }
 
     IEnumerator PatrolState()
@@ -102,10 +108,11 @@ public class EnemyBehavior : MonoBehaviour
         _state = SharkBehavior.Follow;
         while (_state == SharkBehavior.Follow)
         {
-            transform.LookAt(_player.transform.position);
+                        transform.LookAt(_player.transform.position);
             //GetComponent<Rigidbody>().AddForce(Vector3.left *100* Time.deltaTime);
             transform.Translate(Vector3.forward * (2 * Time.deltaTime));
             float distens = Vector3.Distance (transform.position, _target.position);
+            Debug.Log(transform.position);
             if (Time.time >= timeLastSubtracted + 1)
             {
                 if (distens <= 10)
