@@ -19,6 +19,7 @@ public class PlayerOperator : MonoBehaviour
     private int money;
     private float degree;
     private bool UnderWater;
+    private bool aboveWater;
     private float timeLastSubtracted;
     private float boostStarted;
     private bool boosting;
@@ -64,8 +65,17 @@ public class PlayerOperator : MonoBehaviour
     }
 	private void FixedUpdate ()
     {
-        if(direction != Vector3.zero)
-        {
+            if(aboveWater == true)
+            {
+                direction.y = -.2f;
+            }
+            else if(UnderWater == false)
+            {
+                if(direction.y > 0)
+                {
+                    direction.y = .5f;
+                }
+            }
             GetComponent<Rigidbody>().AddForce(direction * Time.deltaTime *speed );
             
             pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;
@@ -81,14 +91,12 @@ public class PlayerOperator : MonoBehaviour
             
             if(direction.x < 0)
             {
-                degree = 90;
+                degree = 0;
             }
             else if(direction.x > 0)
             {
-                degree = 270;
+                degree = 180;
             }
-            
-        }
         transform.localRotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, degree, 0), 1f * Time.deltaTime);
     }
     #region Collision
@@ -102,12 +110,21 @@ public class PlayerOperator : MonoBehaviour
         {
             UnderWater = false;
         }
+        if(other.tag == "TopAir")
+        {
+            aboveWater = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == (Tags.AIR))
         {
             UnderWater = true;
+        }
+        if (other.tag == "TopAir")
+        {
+            aboveWater = false;
+            direction.y = 0;
         }
     }
     #endregion
@@ -181,7 +198,7 @@ public class PlayerOperator : MonoBehaviour
     public void SetLightDir(bool on,float angel)
     {
         flashLight.gameObject.SetActive(on);
-        flashLight.eulerAngles = new Vector3(0, 0, angel);
+        flashLight.eulerAngles = new Vector3(angel, 90, 0);
     }
     public void Boost()
     {

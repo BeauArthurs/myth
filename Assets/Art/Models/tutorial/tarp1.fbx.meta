@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: 98ffbe8468c12419cbc215c3f60d69a8
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: float1
+    100002: float2
+    100004: float3
+    100006: float4
+    100008: float5
+    100010: tarp
+    100012: //RootNode
+    100014: tarp_2
+    400000: float1
+    400002: float2
+    400004: float3
+    400006: float4
+    400008: float5
+    400010: tarp
+    400012: //RootNode
+    400014: tarp_2
+    2300000: float1
+    2300002: float2
+    2300004: float3
+    2300006: float4
+    2300008: float5
+    2300010: tarp
+    2300012: tarp_2
+    3300000: float1
+    3300002: float2
+    3300004: float3
+    3300006: float4
+    3300008: float5
+    3300010: tarp
+    3300012: tarp_2
+    4300000: tarp
+    4300002: tarp_2
+    4300004: float1
+    4300006: float2
+    4300008: float3
+    4300010: float4
+    4300012: float5
+    7400000: tarp1
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: tarp1
+      takeName: C4D Animation Take
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: float1
+        weight: 1
+      - path: float2
+        weight: 1
+      - path: float3
+        weight: 1
+      - path: float4
+        weight: 1
+      - path: float5
+        weight: 1
+      - path: tarp
+        weight: 1
+      - path: tarp_2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

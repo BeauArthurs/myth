@@ -1,64 +1,41 @@
 fileFormatVersion: 2
-guid: aa962f301d13f498c834a08031d99e61
+guid: b140aa4b299cd44a3ab9429eb05d5784
 ModelImporter:
-  serializedVersion: 18
+  serializedVersion: 16
   fileIDToRecycleName:
-    100000: beams
-    100002: floor
-    100004: frame
-    100006: lamp
-    100008: //RootNode
-    100010: pillar
-    100012: pool
-    100014: roof
-    100016: roof_2
-    100018: roofarch
-    100020: roofsidesupport
-    100022: sidebeam
-    100024: wall
-    400000: beams
-    400002: floor
-    400004: frame
-    400006: lamp
-    400008: //RootNode
-    400010: pillar
-    400012: pool
-    400014: roof
-    400016: roof_2
-    400018: roofarch
-    400020: roofsidesupport
-    400022: sidebeam
-    400024: wall
-    2300000: beams
-    2300002: floor
-    2300004: frame
-    2300006: lamp
-    2300008: pillar
-    2300010: pool
-    2300012: roof_2
-    2300014: roofarch
-    2300016: sidebeam
-    2300018: wall
-    3300000: beams
-    3300002: floor
-    3300004: frame
-    3300006: lamp
-    3300008: pillar
-    3300010: pool
-    3300012: roof_2
-    3300014: roofarch
-    3300016: sidebeam
-    3300018: wall
+    100000: floor
+    100002: lamp
+    100004: //RootNode
+    100006: middle_transfer_stop_2
+    100008: middle_transfer_stop_3
+    100010: pool
+    100012: roof
+    100014: roof_1
+    100016: wall_1
+    400000: floor
+    400002: lamp
+    400004: //RootNode
+    400006: middle_transfer_stop_2
+    400008: middle_transfer_stop_3
+    400010: pool
+    400012: roof
+    400014: roof_1
+    400016: wall_1
+    2300000: floor
+    2300002: lamp
+    2300004: pool
+    2300006: roof_1
+    2300008: wall_1
+    3300000: floor
+    3300002: lamp
+    3300004: pool
+    3300006: roof_1
+    3300008: wall_1
     4300000: lamp
     4300002: pool
-    4300004: roof_2
-    4300006: beams
-    4300008: sidebeam
-    4300010: roofarch
-    4300012: pillar
-    4300014: wall
-    4300016: frame
-    4300018: floor
+    4300004: roof_1
+    4300006: wall_1
+    4300008: floor
     9500000: //RootNode
   materials:
     importMaterials: 0
@@ -80,20 +57,18 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: .00999999978
-    meshCompression: 3
+    meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
-    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -116,5 +91,3 @@ ModelImporter:
   animationType: 0
   additionalBone: 0
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 

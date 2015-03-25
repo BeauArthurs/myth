@@ -35,7 +35,10 @@ public class UiScript : MonoBehaviour
 
     public void SetHealth(int amount)
     {
-        healthBar.sprite = health[amount];
+        if (amount < 9 || amount > 0)
+        {
+            healthBar.sprite = health[amount];
+        }
     }
     public void SetAir(int amount)
     {
@@ -55,7 +58,6 @@ public class UiScript : MonoBehaviour
         {
             Store.SetActive(true);
         }
-        Debug.Log("iets");
     }
 
     public void Menu()

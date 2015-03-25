@@ -36,7 +36,7 @@ public class ControlInterface : MonoBehaviour {
                 if (touch.phase == TouchPhase.Moved)
                 {
                     Vector3 dif = sticks[1].GetComponent<JoyStick>().Move(position);
-                    float angel = Mathf.Atan2(dif.y, dif.x) * (180 / Mathf.PI);
+                    float angel = Mathf.Atan2(-dif.y, dif.x) * (180 / Mathf.PI);
                     player.SetLightDir(true, angel);
 
                 }
@@ -81,7 +81,7 @@ public class ControlInterface : MonoBehaviour {
                 else if (hit.collider.name == (Tags.LIGHTSTICK))
                 {
                     Vector3 dif = sticks[1].GetComponent<JoyStick>().Move(position);
-                    float angel = Mathf.Atan2(dif.y,dif.x) *(180/Mathf.PI);
+                    float angel = Mathf.Atan2(-dif.y,dif.x) *(180/Mathf.PI);
                     player.SetLightDir(true ,angel);
                 }
                 else if (hit.collider.name == (Tags.BOOST))
