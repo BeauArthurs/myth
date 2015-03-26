@@ -47,7 +47,6 @@ public class PlayerOperator : MonoBehaviour
             pressure = 0;
         }
         ui.SetDepth(-pressure);
-<<<<<<< HEAD
         if (pressure < -180)
         {
             if (Time.time >= redLightTimer + .5)
@@ -67,10 +66,7 @@ public class PlayerOperator : MonoBehaviour
         {
             red.SetActive(false);
         }
-        if (UnderWater == true)
-=======
         if (UnderWater == true && tutorial == false)
->>>>>>> origin/master
         {
             if (Time.time >= timeLastSubtracted + 3 && air > 0)
             {

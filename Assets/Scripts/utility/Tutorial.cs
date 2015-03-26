@@ -9,6 +9,7 @@ public class Tutorial : MonoBehaviour
     private Text TXT;
     [SerializeField]
     private int TutorialNumber;
+    private float timeLastSubtracted;
     // Use this for initialization
     void Start()
     {
@@ -24,26 +25,29 @@ public class Tutorial : MonoBehaviour
         {
 
             case 1:
-                TXT.text = "Hello and welcome to the tutorial level of the game Mystery Deep.";
+                TXT.text = "Welcome to the tutorial level of 'Mystery Deep'. We wish you a good time in the game.";
                 break;
             case 2:
-                TXT.text = "Use your right stick to turn on your lightning.";
+                TXT.text = "As first: Use your right stick to turn on your light. Try it out!";
                 break;
             case 3:
-                TXT.text = "Collect artifects to get money.";
+                TXT.text = "Do you see the treasure underneath the pool? Try to grab them by diving onto it.";
                 break;
             case 4:
-                TXT.text = "Look Under you is a mine, be carefull becouse it wil explote on to you!";
+                TXT.text = "Be careful, there is a mine ahead.";
                 break;
             case 5:
-                TXT.text = "O NO, You just got hurt Press the shop to heal up agen!";
+                TXT.text = "Alright, you've made it. Good job. You can restock here in this area. Press on the shop button to restock.";
                 break;
             case 6:
-                TXT.text = "You can also buy upgrades in the to shop. also watch out for your air bar";
+                TXT.text = "Don't forget: You can't stay underwater for too long. You can upgrade your submarine if you have enough of gold. It will help you.";
                 break;
             case 7:
-                TXT.text = "You are now ready to play our game";
-                Application.LoadLevel("Menu");
+                TXT.text = "Alright. You're ready for the challenge. Get out of your submarine and we'll bring you to the...";
+                if (Time.time >= timeLastSubtracted + 3)
+                {
+                    Application.LoadLevel("Menu");
+                }
                 break;
             default:
                 print("nothin");
