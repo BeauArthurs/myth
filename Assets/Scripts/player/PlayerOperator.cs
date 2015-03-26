@@ -8,6 +8,8 @@ public class PlayerOperator : MonoBehaviour
     private Transform flashLight;
     [SerializeField]
     private UiScript ui;
+    [SerializeField]
+    private bool tutorial;
     private float speed = 400;
     private Vector3 direction;
     private int totalHealth;
@@ -38,14 +40,23 @@ public class PlayerOperator : MonoBehaviour
     {
         pressure = Mathf.FloorToInt(pressureResistance - transform.position.y);
         ui.SetDepth(-pressure);
-        if (UnderWater == true)
+        if (UnderWater == true && tutorial == false)
         {
             if (Time.time >= timeLastSubtracted + 3 && air > 0)
+            {
+                ChangeAir(-1); 
+                timeLastSubtracted = Time.time;
+            }
+        }
+        else if (UnderWater == true && tutorial == true)
+        {
+            if (Time.time >= timeLastSubtracted + 10 && air > 0)
             {
                 ChangeAir(-1);
                 timeLastSubtracted = Time.time;
             }
         }
+
         else
         {
             if (Time.time >= timeLastSubtracted + .1 && air < 9 )
