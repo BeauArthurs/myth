@@ -6,7 +6,7 @@ public class EnemyBehavior : MonoBehaviour
  
     [SerializeField]
     private GameObject[] _points;
-    private GameObject _currentPoint;
+    private int _currentPoint;
     private GameObject _player;
     private Transform _target;
     private Vector3 _startPosition;
@@ -25,7 +25,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         _startPosition = this.transform.position;
         _player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
-        _currentPoint = _points[0];
+        _currentPoint = 0;
         StartCoroutine(PatrolState());
     }
 
@@ -67,23 +67,21 @@ public class EnemyBehavior : MonoBehaviour
     IEnumerator PatrolState()
     {
         _state = SharkBehavior.Patrol;
-        _currentPoint = _points[0];
+        _currentPoint = 0;
         StopCoroutine(FollowState());
+
         while (_state == SharkBehavior.Patrol)
-        { 
-            transform.LookAt(_currentPoint.transform.position);
-            transform.Translate(Vector3.forward * (2 * Time.deltaTime));
-            if (Mathf.Abs (_currentPoint.transform.position.x - this.transform.position.x) < 1)
+        {
+            transform.LookAt(_points[_currentPoint].transform.position);
+            transform.Translate(Vector3.forward * (20 * Time.deltaTime));
+            if (Mathf.Abs(_points[_currentPoint].transform.position.x - this.transform.position.x) < 1)
             {
-                if (_currentPoint == _points[0])
+                if (_currentPoint == _points.Length)
                 {
-                    _currentPoint = _points[1];
-                    
+                    _currentPoint = 0;
                 }
-                else if (_currentPoint == _points[1])
-                {
-                    _currentPoint = _points[0];
-                }
+                _currentPoint = _currentPoint + 1;
+                
             }
             yield return 0;
         }
