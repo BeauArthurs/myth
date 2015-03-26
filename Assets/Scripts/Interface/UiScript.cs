@@ -46,7 +46,7 @@ public class UiScript : MonoBehaviour
     }
     public void SetDepth(int amount)
     {
-        DepthMeter.eulerAngles = new Vector3(0, 0, amount);
+        DepthMeter.eulerAngles = new Vector3(0, 0, -amount);
     }
     public void Shop()
     {

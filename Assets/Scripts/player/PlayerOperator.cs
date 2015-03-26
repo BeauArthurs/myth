@@ -25,6 +25,9 @@ public class PlayerOperator : MonoBehaviour
     private bool boosting;
     public float boostSpeed = 1f;
     private float boostTimer = .1f;
+    private float redLightTimer;
+    [SerializeField]
+    private GameObject red;
     private void Start()
     {
         health = 9;
@@ -36,8 +39,31 @@ public class PlayerOperator : MonoBehaviour
     }
     private void Update()
     {
-        pressure = Mathf.FloorToInt(pressureResistance - transform.position.y);
+        pressure = Mathf.FloorToInt(transform.position.y) - pressureResistance;
+        if(pressure > 0)
+        {
+            pressure = 0;
+        }
         ui.SetDepth(-pressure);
+        if (pressure < -180)
+        {
+            if (Time.time >= redLightTimer + .5)
+            {
+                if (red.activeSelf == true)
+                {
+                    red.SetActive(false);
+                }
+                else
+                {
+                    red.SetActive(true);
+                }
+                redLightTimer = Time.time;
+            }
+        }
+        else
+        {
+            red.SetActive(false);
+        }
         if (UnderWater == true)
         {
             if (Time.time >= timeLastSubtracted + 3 && air > 0)
@@ -54,9 +80,9 @@ public class PlayerOperator : MonoBehaviour
                 timeLastSubtracted = Time.time;
             }
         }
-        if(air == 0)
+        if(air == 0 || pressure < -200)
         {
-            if (Time.time >= timeLastSubtracted)
+            if (Time.time >= timeLastSubtracted + 1)
             {
                 ChangeHealth(-1);
                 timeLastSubtracted = Time.time;
@@ -131,8 +157,11 @@ public class PlayerOperator : MonoBehaviour
     #region Health
     public void ChangeHealth(int amount)
     {
-        health += amount;
-        ui.SetHealth(health);
+        if (health - amount < -1)
+        {
+            health += amount;
+            ui.SetHealth(health);
+        }
     }
     public void SetTotalHealth(int amount)
     {
@@ -158,8 +187,11 @@ public class PlayerOperator : MonoBehaviour
     }
     public void ChangeAir(int amount)
     {
-        air += amount;
-        ui.SetAir(air);
+        if (air - amount < -1)
+        {
+            air += amount;
+            ui.SetAir(air);
+        }
     }
     public void SetTotalAir(int amount)
     {
