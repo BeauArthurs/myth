@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Tags{
 
-    public const string PLAYER = "Player";
+    public const string PLAYER = "Player2";
     public const string MOVEMENTSTICK = "MovementStick";
     public const string LIGHTSTICK = "LightStick";
     public const string BOOST = "boost";
