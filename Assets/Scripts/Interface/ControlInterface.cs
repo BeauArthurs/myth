@@ -16,10 +16,12 @@ public class ControlInterface : MonoBehaviour {
         int fingers = Input.touchCount;
         for (int i = 0; i < fingers; i++)
         {
+            Debug.Log("totch");
             Touch touch = Input.touches[i];
-            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0 - Camera.main.transform.position.z));
+            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 8));
             if(i == _StickOne-1)
             {
+                Debug.Log("move 1");
                 if(touch.phase == TouchPhase.Moved)
                 {
                     player.SetDirection(sticks[0].GetComponent<JoyStick>().Move(position));
@@ -33,6 +35,7 @@ public class ControlInterface : MonoBehaviour {
             }
             else  if(i == _StickTwo-1)
             {
+                Debug.Log("move 1");
                 if (touch.phase == TouchPhase.Moved)
                 {
                     Vector3 dif = sticks[1].GetComponent<JoyStick>().Move(position);
@@ -54,10 +57,12 @@ public class ControlInterface : MonoBehaviour {
                 {
                     if (hit.collider.name == (Tags.MOVEMENTSTICK))
                     {
+                        Debug.Log("Start 1");
                         _StickOne = i + 1;
                     }
                     else if (hit.collider.name == (Tags.LIGHTSTICK))
                     {
+                        Debug.Log("Start 2");
                         _StickTwo = i + 1;
                     }
                     else if(hit.collider.name == (Tags.BOOST))
@@ -68,7 +73,7 @@ public class ControlInterface : MonoBehaviour {
             }
         }
         //for testing on pc
-        if(Input.GetMouseButton(0))
+        /*if(Input.GetMouseButton(0))
         {
             Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8));
             RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
@@ -108,7 +113,7 @@ public class ControlInterface : MonoBehaviour {
                 sticks[1].GetComponent<JoyStick>().LetGo();
             }
             }
-        }
+        }*/
 	
 	}
 }
