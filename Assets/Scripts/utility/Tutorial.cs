@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 public class Tutorial : MonoBehaviour
 {
+
+    private PlayerOperator _operatorController;
     [SerializeField]
     private Text TXT;
     [SerializeField]
@@ -10,7 +12,10 @@ public class Tutorial : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+        _operatorController = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerOperator>();
     }
+
 
     // Update is called once per frame
     void OnTriggerEnter(Collider other)
@@ -34,7 +39,7 @@ public class Tutorial : MonoBehaviour
                 TXT.text = "O NO, You just got hurt Press the shop to heal up agen!";
                 break;
             case 6:
-                TXT.text = "You can also buy upgrades in the to shop.";
+                TXT.text = "You can also buy upgrades in the to shop. also watch out for your air bar";
                 break;
             case 7:
                 TXT.text = "You are now ready to play our game";
