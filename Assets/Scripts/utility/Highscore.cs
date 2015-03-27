@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Highscore : MonoBehaviour {
-    public string name;
+    public string userName;
     private string url = "http://Localhost/AtlantisGame/Connection.php";
     public GameObject player;
     public PlayerOperator _operatorController;
@@ -38,7 +38,7 @@ public class Highscore : MonoBehaviour {
             Debug.Log("stuur");
             WWWForm form = new WWWForm();
             form.AddField("score", Mathf.FloorToInt(-player.transform.position.y));
-            form.AddField("name", name);
+            form.AddField("name", userName);
             WWW www = new WWW(url, form);
             StartCoroutine(WaitForRequest(www));
             Application.LoadLevel("Kevin");

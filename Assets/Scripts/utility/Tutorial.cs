@@ -4,21 +4,15 @@ using UnityEngine.UI;
 public class Tutorial : MonoBehaviour
 {
 
-    private PlayerOperator _operatorController;
     [SerializeField]
     private Text TXT;
     [SerializeField]
     private int TutorialNumber;
     private float timeLastSubtracted;
-    // Use this for initialization
     void Start()
     {
-
-        _operatorController = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerOperator>();
+        timeLastSubtracted = Time.time;
     }
-
-
-    // Update is called once per frame
     void OnTriggerEnter(Collider other)
     {
         switch (TutorialNumber)
