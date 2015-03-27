@@ -55,7 +55,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (other.gameObject.tag == (Tags.PLAYER))
         {
-           _player.gameObject.GetComponent<PlayerOperator>().ChangeHealth(-3);
+           _player.gameObject.GetComponent<PlayerOperator>().ChangeHealth(3 , -1);
         }
     }
 

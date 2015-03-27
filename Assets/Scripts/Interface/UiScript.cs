@@ -19,19 +19,14 @@ public class UiScript : MonoBehaviour
     private GameObject Store;
     [SerializeField]
     private GameObject _Menu;
-    private int _itemNumber;
+    [SerializeField]
+    private Text money;
 
     [SerializeField]
     private AudioMixer _Mastermix;
 
-    private GameObject _player;
+    [SerializeField]
     private PlayerOperator _operatorController;
-
-    void Start () 
-    {
-    _player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
-    _operatorController = _player.GetComponent<PlayerOperator>();
-    }
 
     public void SetHealth(int amount)
     {
@@ -47,6 +42,10 @@ public class UiScript : MonoBehaviour
     public void SetDepth(int amount)
     {
         DepthMeter.eulerAngles = new Vector3(0, 0, -amount);
+    }
+    public void setMoney(int amount)
+    {
+        money.text = "Money : " + amount;
     }
     public void Shop()
     {
@@ -72,48 +71,37 @@ public class UiScript : MonoBehaviour
         }
     }
 
-            public void Heal()
-            {
-              print("heal");
-              _operatorController.ChangeHealth(1);
-            }
+    public void Heal()
+    {
+        if(_operatorController.GetMoney() > 100)
+        {
+            _operatorController.ChangeMoney(-100);
+            _operatorController.ChangeHealth(2 ,1);
+        }
+    }
+    public void UpgradeAirTank()
+    {
+        if (_operatorController.GetMoney() > 200 && _operatorController.GetAirTimer() < 10)
+        {
+            _operatorController.ChangeMoney(-200);
+            _operatorController.ChangeAirTimer(1);
+        }
+    }
 
-            public void UpgradeHealth()
-               {
-                  print("upgrade health");
-                  _operatorController.ChangeHealth(_operatorController.GetHealth() + 1);
-               }
-
-             public void UpgradeAirTank()
-              {   
-                 print("upgrade air thin tank");
-                 _operatorController.ChangePressureResistance(_operatorController.GetPressure() + 1);
-              }
-
-           public void Boost()
-           {
-             print("upgrade boost");
-             _operatorController.boostSpeed = _operatorController.boostSpeed + 5;
-           }
-           public void Exit()
-           {
-               Application.Quit();
-           }
-           public void Sound()
-           {
-               //_Mastermix.SetFloat("MUSIC",10);
-               if (Camera.main.GetComponent<AudioSource>().mute == true)
-               {
-                   Camera.main.GetComponent<AudioSource>().mute = false;
-               }
-               else
-               {
-                   Camera.main.GetComponent<AudioSource>().mute = true;
-               }
-              
-           }
-           public void MainMenu()
-           {
-               Application.LoadLevel("Menu");
-           }
+    public void UpgradeHual()
+    {
+        if (_operatorController.GetMoney() > 1000)
+        {
+            _operatorController.ChangeMoney(-1000);
+            _operatorController.ChangePressureResistance(200);
+        }
+    }
+    public void Exit()
+    {
+        Application.Quit();
+    }
+    public void MainMenu()
+    {
+        Application.LoadLevel("Menu");
+    }
 }

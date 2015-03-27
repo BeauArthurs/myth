@@ -13,8 +13,9 @@ public class PickUps : MonoBehaviour {
             switch (typePickUp)
             {
                 case 1:
-                    Destroy(this.gameObject);
+                    
                     _operatorController.ChangeMoney(Random.Range(100, 150));
+                    Destroy(this.gameObject);
                     break;
             }
         }

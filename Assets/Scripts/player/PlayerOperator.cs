@@ -14,7 +14,6 @@ public class PlayerOperator : MonoBehaviour
     private Vector3 direction;
     private int totalHealth;
     private int health;
-    private int totalAir;
     private int air;
     private int pressure;
     private int pressureResistance;
@@ -30,11 +29,14 @@ public class PlayerOperator : MonoBehaviour
     private float redLightTimer;
     [SerializeField]
     private GameObject red;
+    private int airTimer;
+    [SerializeField]
+    private AudioSource alarm;
     private void Start()
     {
         health = 9;
-        totalAir = 9;
         air = 9;
+        airTimer = 3;
         pressureResistance = 0;
         pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;
         boosting = false;
@@ -54,6 +56,7 @@ public class PlayerOperator : MonoBehaviour
                 if (red.activeSelf == true)
                 {
                     red.SetActive(false);
+                    alarm.Play();
                 }
                 else
                 {
@@ -68,7 +71,7 @@ public class PlayerOperator : MonoBehaviour
         }
         if (UnderWater == true && tutorial == false)
         {
-            if (Time.time >= timeLastSubtracted + 3 && air > 0)
+            if (Time.time >= timeLastSubtracted + airTimer && air > 0)
             {
                 ChangeAir(-1); 
                 timeLastSubtracted = Time.time;
@@ -95,7 +98,7 @@ public class PlayerOperator : MonoBehaviour
         {
             if (Time.time >= timeLastSubtracted + 1)
             {
-                ChangeHealth(-1);
+                ChangeHealth(1 , -1);
                 timeLastSubtracted = Time.time;
             }
         }
@@ -139,7 +142,7 @@ public class PlayerOperator : MonoBehaviour
     #region Collision
     private void OnCollisionEnter(Collision collision)
     {
-            ChangeHealth(-1);
+            ChangeHealth(1,-1);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -166,12 +169,20 @@ public class PlayerOperator : MonoBehaviour
     }
     #endregion
     #region Health
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(int amount, int multiplayer)
     {
-        if (health - amount < -1)
+        for (int i = 0; i < amount; i++)
         {
-            health += amount;
-            ui.SetHealth(health);
+            if (health + (1 * multiplayer) > -1 && health + (1 * multiplayer) < 10)
+            {
+                health += 1 * multiplayer;
+                ui.SetHealth(health);
+            }
+            else if (health == 0)
+            {
+                //die
+                Application.LoadLevel("Game");
+            }
         }
     }
     public void SetTotalHealth(int amount)
@@ -188,9 +199,16 @@ public class PlayerOperator : MonoBehaviour
     }
     #endregion
     #region Air
-    public int GetTotalAir()
+    public int GetAirTimer()
     {
-        return totalAir;
+        return airTimer;
+    }
+    public void ChangeAirTimer(int amout)
+    {
+        if (airTimer < 10)
+        {
+            airTimer += amout;
+        }
     }
     public float GetAir()
     {
@@ -198,15 +216,11 @@ public class PlayerOperator : MonoBehaviour
     }
     public void ChangeAir(int amount)
     {
-        if (air - amount < -1)
+        if (air - amount > -1)
         {
             air += amount;
             ui.SetAir(air);
         }
-    }
-    public void SetTotalAir(int amount)
-    {
-        totalAir = amount;
     }
     #endregion
     #region Pressure 
@@ -231,6 +245,7 @@ public class PlayerOperator : MonoBehaviour
     public void ChangeMoney(int amount)
     {
         money += amount;
+        ui.setMoney(money);
     } 
     #endregion
     #region other

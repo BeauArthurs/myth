@@ -73,7 +73,7 @@ public class ControlInterface : MonoBehaviour {
             }
         }
         //for testing on pc
-        /*if(Input.GetMouseButton(0))
+        if(Input.GetMouseButton(0))
         {
             Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 8));
             RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
@@ -113,7 +113,7 @@ public class ControlInterface : MonoBehaviour {
                 sticks[1].GetComponent<JoyStick>().LetGo();
             }
             }
-        }*/
+        }
 	
 	}
 }
