@@ -65,10 +65,6 @@ public class ControlInterface : MonoBehaviour {
                         Debug.Log("Start 2");
                         _StickTwo = i + 1;
                     }
-                    else if(hit.collider.name == (Tags.BOOST))
-                    {
-                        player.Boost();
-                    }
                 }
             }
         }
@@ -88,11 +84,6 @@ public class ControlInterface : MonoBehaviour {
                     Vector3 dif = sticks[1].GetComponent<JoyStick>().Move(position);
                     float angel = Mathf.Atan2(-dif.y,dif.x) *(180/Mathf.PI);
                     player.SetLightDir(true ,angel);
-                }
-                else if (hit.collider.name == (Tags.BOOST))
-                {
-                    player.Boost();
-                    Debug.Log("boost");
                 }
             }
         }

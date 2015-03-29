@@ -22,10 +22,6 @@ public class PlayerOperator : MonoBehaviour
     private bool UnderWater;
     private bool aboveWater;
     private float timeLastSubtracted;
-    private float boostStarted;
-    private bool boosting;
-    public float boostSpeed = 1f;
-    private float boostTimer = .1f;
     private float redLightTimer;
     [SerializeField]
     private GameObject red;
@@ -36,10 +32,9 @@ public class PlayerOperator : MonoBehaviour
     {
         health = 9;
         air = 9;
-        airTimer = 3;
+        airTimer = 6;
         pressureResistance = 0;
         pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;
-        boosting = false;
     }
     private void Update()
     {
@@ -119,16 +114,6 @@ public class PlayerOperator : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(direction * Time.deltaTime *speed );
             
             pressure = Mathf.FloorToInt(transform.position.y) + pressureResistance;
-            if (boosting)
-            {
-                Debug.Log("fast");
-                GetComponent<Rigidbody>().AddForce(direction * Time.deltaTime * (boostSpeed *speed));
-                if(Time.time >= boostStarted + boostTimer)
-                {
-                    boosting = false;
-                }
-            }
-            
             if(direction.x < 0)
             {
                 degree = 0;
@@ -257,20 +242,6 @@ public class PlayerOperator : MonoBehaviour
     {
         flashLight.gameObject.SetActive(on);
         flashLight.eulerAngles = new Vector3(angel, 90, 0);
-    }
-    public void Boost()
-    {
-        if (boosting == false)
-        {
-            boostStarted = Time.time;
-            boosting = true;
-        }
-        /*if (Time.time >= lastTimeBoosted + boostTimer)
-        {
-            Debug.Log("boost2");
-            GetComponent<Rigidbody>().AddForce(1 * direction * Time.deltaTime * speed * boostSpeed);
-            lastTimeBoosted = Time.time;
-        }*/
     }
     #endregion
 }

@@ -21,7 +21,10 @@ public class UiScript : MonoBehaviour
     private GameObject _Menu;
     [SerializeField]
     private Text money;
-
+    [SerializeField]
+    private GameObject winscreen;
+    [SerializeField]
+    private GameObject ui;
     [SerializeField]
     private AudioMixer _Mastermix;
 
@@ -103,5 +106,10 @@ public class UiScript : MonoBehaviour
     public void MainMenu()
     {
         Application.LoadLevel("Menu");
+    }
+    public void win()
+    {
+        winscreen.SetActive(true);
+        ui.SetActive(false);
     }
 }

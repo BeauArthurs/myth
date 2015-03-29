@@ -3,14 +3,16 @@ using System.Collections;
 
 public class EnemyBehavior : MonoBehaviour
 {
- 
+    [SerializeField]
+    private Animator anim;
     [SerializeField]
     private GameObject[] _points;
     private int _currentPoint;
     private GameObject _player;
     private Transform _target;
-    private Vector3 _startPosition;
     private float timeLastSubtracted;
+    [SerializeField]
+    private int attackDistance;
     public enum SharkBehavior
     {
         Patrol = 0,
@@ -23,7 +25,6 @@ public class EnemyBehavior : MonoBehaviour
 
     void Start()
     {
-        _startPosition = this.transform.position;
         _player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
         _currentPoint = 0;
         StartCoroutine(PatrolState());
@@ -34,23 +35,11 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (other.transform.tag == (Tags.PLAYER))
         {
+            _target = other.transform;
             StartCoroutine(FollowState());
             StopCoroutine(PatrolState());
-            _target = other.transform; 
         }
     }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == (Tags.PLAYER))
-        {
-            StopCoroutine(FollowState());
-            StartCoroutine(PatrolState());
-            Debug.Log(_state);
-            this.transform.position = _startPosition;
-        }
-    }
-
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == (Tags.PLAYER))
@@ -73,15 +62,17 @@ public class EnemyBehavior : MonoBehaviour
         while (_state == SharkBehavior.Patrol)
         {
             transform.LookAt(_points[_currentPoint].transform.position);
-            transform.Translate(Vector3.forward * (20 * Time.deltaTime));
+            transform.Translate(Vector3.forward * (3 * Time.deltaTime));
             if (Mathf.Abs(_points[_currentPoint].transform.position.x - this.transform.position.x) < 1)
             {
-                if (_currentPoint == _points.Length)
+                if (_currentPoint == _points.Length - 1)
                 {
                     _currentPoint = 0;
                 }
-                _currentPoint = _currentPoint + 1;
-                
+                else
+                {
+                    _currentPoint += 1;
+                }
             }
             yield return 0;
         }
@@ -89,16 +80,18 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator AttackState()
     {
-        
-        StopCoroutine(FollowState());
-        _state = SharkBehavior.Attack;
+        anim.SetTrigger("attack");
+        _state = SharkBehavior.Attack; 
         while (_state == SharkBehavior.Attack)
         {
-            //GetComponent<Rigidbody>().AddForce(Vector3.left * 500 * Time.deltaTime);
-            transform.Translate(Vector3.forward * (10 * Time.deltaTime));
-    
+            if (Time.time >= timeLastSubtracted + .7)
+            {
+                StartCoroutine(FollowState());
+                StopCoroutine(AttackState());
+            }
             yield return 0;
         }
+        
     }
 
     IEnumerator FollowState()
@@ -106,21 +99,24 @@ public class EnemyBehavior : MonoBehaviour
         _state = SharkBehavior.Follow;
         while (_state == SharkBehavior.Follow)
         {
-                        transform.LookAt(_player.transform.position);
-            //GetComponent<Rigidbody>().AddForce(Vector3.left *100* Time.deltaTime);
-            transform.Translate(Vector3.forward * (2 * Time.deltaTime));
-            float distens = Vector3.Distance (transform.position, _target.position);
-            Debug.Log(transform.position);
-            if (Time.time >= timeLastSubtracted + 1)
+            
+            transform.LookAt(_player.transform.position);
+            float distance = Vector3.Distance(transform.position, _target.position);
+            if (distance <= attackDistance)
             {
-                if (distens <= 10)
-                {
-                    StopCoroutine(FollowState());
-                    StartCoroutine(AttackState());
-                }
                 timeLastSubtracted = Time.time;
-            }
+                StartCoroutine(AttackState());
+                StopCoroutine(FollowState());
 
+            }
+            if (distance >= 30)
+            {
+                transform.position = _points[0].transform.position;
+                StartCoroutine(PatrolState());
+                StopCoroutine(FollowState());
+            }
+            transform.Translate(Vector3.forward * (2* Time.deltaTime));
+               
             yield return 0;
         }
 

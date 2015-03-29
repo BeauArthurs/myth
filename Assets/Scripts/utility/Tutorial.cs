@@ -9,9 +9,17 @@ public class Tutorial : MonoBehaviour
     [SerializeField]
     private int TutorialNumber;
     private float timeLastSubtracted;
-    void Start()
+    private bool startTimer;
+
+    void Update()
     {
-        timeLastSubtracted = Time.time;
+        if (startTimer == true)
+        {
+            if (Time.time >= timeLastSubtracted + 5)
+            {
+                Application.LoadLevel("Menu");
+            }
+        }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -38,10 +46,8 @@ public class Tutorial : MonoBehaviour
                 break;
             case 7:
                 TXT.text = "Alright. You're ready for the challenge. Get out of your submarine and we'll bring you to the...";
-                if (Time.time >= timeLastSubtracted + 3)
-                {
-                    Application.LoadLevel("Menu");
-                }
+                timeLastSubtracted = Time.time;
+                startTimer = true;
                 break;
             default:
                 print("nothin");
