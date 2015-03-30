@@ -28,6 +28,8 @@ public class PlayerOperator : MonoBehaviour
     private int airTimer;
     [SerializeField]
     private AudioSource alarm;
+    [SerializeField]
+    private GameObject JoySticks;
     private void Start()
     {
         health = 9;
@@ -127,7 +129,10 @@ public class PlayerOperator : MonoBehaviour
     #region Collision
     private void OnCollisionEnter(Collision collision)
     {
-            ChangeHealth(1,-1);
+        if (collision.gameObject.tag != "Air")
+        {
+            ChangeHealth(1, -1);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -139,6 +144,12 @@ public class PlayerOperator : MonoBehaviour
         {
             aboveWater = true;
         }
+        else if(other.tag == "atlantis")
+        {
+            ui.win();
+            JoySticks.SetActive(false);
+        }
+
     }
     private void OnTriggerExit(Collider other)
     {

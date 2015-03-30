@@ -3,10 +3,7 @@ using System.Collections;
 
 public class Highscore : MonoBehaviour {
     public string userName;
-    private string url = "http://Localhost/AtlantisGame/Connection.php";
-    public GameObject player;
-    public PlayerOperator _operatorController;
-    private bool dead = false;
+    private string url = "http://lycan-games.com/myth/Connection.php";
     
 
     IEnumerator WaitForRequest(WWW www)
@@ -24,25 +21,12 @@ public class Highscore : MonoBehaviour {
         }
     }
 
-	void Update () 
+	public void send (float score) 
     {
-        float health = _operatorController.GetHealth();
-        
-        if (health <= 0)
-        {
-            dead = true;
-        }
-
-        if (dead == true)
-        {
-            Debug.Log("stuur");
             WWWForm form = new WWWForm();
-            form.AddField("score", Mathf.FloorToInt(-player.transform.position.y));
+            form.AddField("score", Mathf.FloorToInt(score));
             form.AddField("name", userName);
             WWW www = new WWW(url, form);
             StartCoroutine(WaitForRequest(www));
-            Application.LoadLevel("Kevin");
-            
-        }
 	}
 }

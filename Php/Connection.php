@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "ascent";
-$dbname = "atlantis";
+$username = "beaua_School";
+$password = "atlantis";
+$dbname = "beaua_myth";
 $name = $_REQUEST["name"];
 $score = $_REQUEST["score"];
 

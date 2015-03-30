@@ -27,10 +27,17 @@ public class UiScript : MonoBehaviour
     private GameObject ui;
     [SerializeField]
     private AudioMixer _Mastermix;
-
+    private float startTime;
     [SerializeField]
     private PlayerOperator _operatorController;
-
+    [SerializeField]
+    private Text points;
+    [SerializeField]
+    private Highscore highscore;
+    private void Start()
+    {
+        startTime = Time.time;
+    }
     public void SetHealth(int amount)
     {
         if (amount < 9 || amount > 0)
@@ -73,7 +80,6 @@ public class UiScript : MonoBehaviour
             _Menu.SetActive(true);
         }
     }
-
     public void Heal()
     {
         if(_operatorController.GetMoney() > 100)
@@ -111,5 +117,7 @@ public class UiScript : MonoBehaviour
     {
         winscreen.SetActive(true);
         ui.SetActive(false);
+        points.text = (Time.time - startTime).ToString();
+        highscore.send(Time.time - startTime);
     }
 }
